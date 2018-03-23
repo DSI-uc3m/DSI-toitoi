@@ -1,5 +1,6 @@
 import { Component,Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ControlValueAccessor } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -8,20 +9,19 @@ import { FormsModule } from '@angular/forms';
 })
 
 export class AppComponent {
-  title = 'Aplicación ANGULAR - Ejemplo 2';
+  title = 'Menú de restaurante';
   
   public txtNombre:string="Pepe";
   public txtApellidos:string="Martin Manso";
   
   private platos:Array<[string,number]>=[['Conejo al brandy',12],['Crema de batatas',5],['Tallarines a la carbonara',8.5],['Entrecot',20]];
-  public cod_color:Array<[string,string]>;
-  public cod_color2=0;
+  private plato:string;
   
-  public lineas=['Esto es una linea prueba'];
+  public lineas=[];
   
   public addLinea()
   {
-	  this.lineas.push(this.cod_color[2]);
+	  this.lineas.push(this.plato);
   }
   
   public delLinea(i)
