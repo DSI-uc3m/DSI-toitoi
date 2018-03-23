@@ -1,2 +1,2 @@
 # DSI-toitoi
-Toi toi
+Cada una de las microprácticas se llaman practicaXX. La práctica final se llamará practicafinal.
