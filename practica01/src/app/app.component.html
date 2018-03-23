@@ -12,7 +12,7 @@
 <form class='classform1' #f='ngForm'>
 <label>Consumición:</label>
 <select name='comanda' [(ngModel)] ="plato">
-	<option *ngFor='let ps of platos'>{{ps[0]}} ( {{ps[1]}}€ )</option>
+	<option *ngFor='let ps of platos'>{{ps[0]}} ({{ps[1]}}€)</option>
 </select>
 <button type='button' (click)='addLinea()'>+</button>
 <br/>
@@ -26,6 +26,10 @@
 <p *ngFor='let linea of lineas; let i=index'>
 	{{linea}}
 	<button type='button' (click)='delLinea(i)'>-</button>
+</p>
+
+<p> 
+Total: {{suma}} €
 </p>
 
 </div>
