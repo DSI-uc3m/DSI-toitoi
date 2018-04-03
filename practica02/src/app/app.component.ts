@@ -9,15 +9,4 @@ export class AppComponent {
   title = 'app';
 }
 
-class Vehiculo{
-	public foto:string;
-	public marca:string;
-	public modelo:string;
-	public year:date;
-	public fventa:date;
-	public precio:number;
-	public pvp:number;
-	
-	
-	
-}
+
