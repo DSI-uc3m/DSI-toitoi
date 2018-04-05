@@ -51,17 +51,19 @@ export class AppComponent {
 	
 }
 
-  //TODO: Solucionar que se muestren los que EMPIEZAN por ese substring en lugar de los que lo contienen
   public getFiltrados(){
   
   	if (this.filtro == null) return this.filtrados;
+  	
+
   
   	for(let x = 0; x < this.coches.length; x++){
-  		if(this.coches[x].marca.includes(this.filtro) && this.filtrados.indexOf(this.coches[x]) == -1){
+  		if(this.coches[x].marca.indexOf(this.filtro) == 0 && this.filtrados.indexOf(this.coches[x]) == -1){
+  			
   			this.filtrados.push(this.coches[x]);
   		}
   		
-  		if(!this.coches[x].marca.includes(this.filtro) && this.filtrados.indexOf(this.coches[x]) != -1){
+  		if(this.coches[x].marca.indexOf(this.filtro) != 0 && this.filtrados.indexOf(this.coches[x]) != -1){
   			this.filtrados.splice(this.filtrados.indexOf(this.coches[x]));
   		}
   		
