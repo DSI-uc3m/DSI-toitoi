@@ -17,7 +17,7 @@ Filtrar por: <input [(ngModel)]="filtro" placeholder="(marca de coche)">
     <th>PVP</th>
     <th>Acciones</th>
   </tr>
-  <tr *ngFor="let g of getFiltrados(); let i=index">
+  <tr *ngFor="let g of getFiltrados()">
     <td *ngIf="g.foto==''">(sin foto!)</td>
     <td *ngIf="g.foto!=''"><img src="assets/{{g.foto}}" alt="{{g.modelo}}"></td>
     <td>{{g.marca | uppercase}}</td> 
@@ -27,8 +27,8 @@ Filtrar por: <input [(ngModel)]="filtro" placeholder="(marca de coche)">
     <td>{{g.precio | number:'4.2-2'}}€</td>   
     <td *ngIf="g.estado==EstadoCoche.BUENO" style="background-color:green">{{g.getPVP() | number:'4.2-2'}}€</td>
     <td *ngIf="g.estado==EstadoCoche.MALO" style="background-color:red">{{g.getPVP() | number:'4.2-2'}}€</td>
-    <td><button type='button' (click)='rebajar(i)'>Rebajar</button>
-    	<button type='button' (click)='vendido(i)'>Vendido</button>
+    <td><button type='button' (click)='rebajar(g.id)'>Rebajar</button>
+    	<button type='button' (click)='vendido(g.id)'>Vendido</button>
     </td>  
   </tr>
 </table>

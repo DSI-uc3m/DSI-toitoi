@@ -30,13 +30,25 @@ export class AppComponent {
   	this.filtrados.push(this.coches[i]);
   	}
   
-  //TODO: Solucionar el tema de los índices
-  public rebajar(i){
-	this.coches[i].precio = this.coches[i].precio*0.9;
+  public rebajar(id){
+  	let index = -1;
+  	for(let x = 0; x < this.coches.length; x++){
+  		if(this.coches[x].id == id) index = x;
+  	}
+	this.coches[index].precio = this.coches[index].precio*0.9;
 }
 
-  public vendido(i){
-	this.coches.splice(i, 1);
+  public vendido(id){
+  let index = -1;
+  	for(let x = 0; x < this.coches.length; x++){
+  		if(this.coches[x].id == id) index = x;
+  	}
+  	this.coches.splice(index, 1);
+  	for(let x = 0; x < this.filtrados.length; x++){
+  		if(this.filtrados[x].id == id) index = x;
+  	}
+  	this.filtrados.splice(index, 1);
+	
 }
 
   //TODO: Solucionar que se muestren los que EMPIEZAN por ese substring en lugar de los que lo contienen
