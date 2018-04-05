@@ -21,6 +21,10 @@ export class AppComponent {
   public rebajar(i){
 	this.coches[i].precio = this.coches[i].precio*0.9;
 }
+
+  public vendido(i){
+	this.coches.splice(i, 1);
+}
 }
 
 
