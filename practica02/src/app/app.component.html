@@ -17,7 +17,7 @@ Filtrar por: <input [(ngModel)]="filtro" placeholder="(marca de coche)">
     <th>PVP</th>
     <th>Acciones</th>
   </tr>
-  <tr *ngFor="let g of coches; let i=index">
+  <tr *ngFor="let g of getFiltrados(); let i=index">
     <td *ngIf="g.foto==''">(sin foto!)</td>
     <td *ngIf="g.foto!=''"><img src="assets/{{g.foto}}" alt="{{g.modelo}}"></td>
     <td>{{g.marca | uppercase}}</td> 
