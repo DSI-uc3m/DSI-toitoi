@@ -1,3 +1,5 @@
+export enum EstadoCoche { BUENO, MALO }
+
 export class Coche {
 
 public marca:string;
@@ -8,10 +10,18 @@ public fecha_venta:Date;
 public precio:number;
 public estado:EstadoCoche;
 
-public number getPVP(){
+public getPVP(){
 	return this.precio*1.21;
 }
 
-public enum EstadoCoche { BUENO, MALO };
+constructor(marca1, modelo1, foto1, fecha_modelo1, fecha_venta1, precio1, estado1){
+this.marca = marca1;
+this.modelo = modelo1;
+this.foto = foto1;
+this.fecha_modelo = fecha_modelo1;
+this.fecha_venta = fecha_venta1;
+this.precio = precio1;
+this.estado = estado1;
+}
 
 }
