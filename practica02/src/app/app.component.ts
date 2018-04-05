@@ -17,6 +17,10 @@ export class AppComponent {
   new Coche('opel', 'corsa', new Date(2002, 11, 14), new Date (2018, 3, 6), 1200, '', EstadoCoche.MALO),
   new Coche('dacia', 'logan', new Date(2005, 2, 14), new Date (2018, 3, 1), 3340, '', EstadoCoche.MALO),
   new Coche('citroen', 'xsara picasso', new Date(2001, 1, 30), new Date (2018, 1, 3), 2350, '', EstadoCoche.BUENO)]
+  
+  public rebajar(i){
+	this.coches[i].precio = this.coches[i].precio*0.9;
+}
 }
 
 
