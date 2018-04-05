@@ -21,7 +21,8 @@
     <td>{{g.fecha_modelo | date:'yyyy'}}</td>
     <td>{{g.fecha_venta | date:'MM-yyyy'}}</td>
     <td>{{g.precio}}</td>   
-    <td>{{g.getPVP()}}</td>
+    <td *ngIf="g.estado==EstadoCoche.BUENO" style="background-color:green">{{g.getPVP()}}</td>
+    <td *ngIf="g.estado==EstadoCoche.MALO" style="background-color:red">{{g.getPVP()}}</td>
     <td>Rebajar // Vendido</td>  
   </tr>
 </table>
