@@ -9,7 +9,7 @@ import { ControlValueAccessor } from '@angular/forms';
 })
 
 export class AppComponent {
-  title = 'Menú de restaurante';
+  title = 'Micropráctica 01';
   
   public txtNombre:string="Pepe";
   public txtApellidos:string="Martin Manso";
