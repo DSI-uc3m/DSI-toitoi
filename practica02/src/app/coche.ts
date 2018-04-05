@@ -14,7 +14,7 @@ public getPVP(){
 	return this.precio*1.21;
 }
 
-constructor(marca1, modelo1, foto1, fecha_modelo1, fecha_venta1, precio1, estado1){
+constructor(marca1, modelo1, fecha_modelo1, fecha_venta1, precio1, foto1, estado1){
 this.marca = marca1;
 this.modelo = modelo1;
 this.foto = foto1;
