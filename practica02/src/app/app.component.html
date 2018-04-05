@@ -15,14 +15,15 @@
     <th>Acciones</th>
   </tr>
   <tr *ngFor="let g of coches">
-    <td>{{g.foto}}</td>
+    <td *ngIf="g.foto==''">(sin foto!)</td>
+    <td *ngIf="g.foto!=''"><img src="assets/{{g.foto}}" alt="{{g.modelo}}"></td>
     <td>{{g.marca | uppercase}}</td> 
     <td>{{g.modelo | lowercase}}</td> 
     <td>{{g.fecha_modelo | date:'yyyy'}}</td>
     <td>{{g.fecha_venta | date:'MM-yyyy'}}</td>
-    <td>{{g.precio}}</td>   
-    <td *ngIf="g.estado==EstadoCoche.BUENO" style="background-color:green">{{g.getPVP()}}</td>
-    <td *ngIf="g.estado==EstadoCoche.MALO" style="background-color:red">{{g.getPVP()}}</td>
+    <td>{{g.precio | number:'4.2-2'}}€</td>   
+    <td *ngIf="g.estado==EstadoCoche.BUENO" style="background-color:green">{{g.getPVP() | number:'4.2-2'}}€</td>
+    <td *ngIf="g.estado==EstadoCoche.MALO" style="background-color:red">{{g.getPVP() | number:'4.2-2'}}€</td>
     <td>Rebajar // Vendido</td>  
   </tr>
 </table>
