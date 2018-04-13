@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { HomePage } from '../home/home';
 /**
  * Generated class for the HomeUsuarioPage page.
  *
@@ -21,5 +21,13 @@ export class HomeUsuarioPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomeUsuarioPage');
   }
+  
+  irPagSiguiente(){
+  	this.navCtrl.push('VerObraPage');
+  	}
+  	
+  irHome(){
+  	this.navCtrl.setRoot(HomePage);
+  	}
 
 }

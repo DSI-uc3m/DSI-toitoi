@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { HomePage } from '../home/home';
 /**
  * Generated class for the VerObraPage page.
  *
@@ -21,5 +21,13 @@ export class VerObraPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad VerObraPage');
   }
+  
+    irPagSiguiente(){
+  	this.navCtrl.push('ComprarObraPage');
+  	}
+  	
+  irHome(){
+  	this.navCtrl.setRoot(HomePage);
+  	}
 
 }

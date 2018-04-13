@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { HomePage } from '../home/home';
 /**
  * Generated class for the SubirObraPage page.
  *
@@ -21,5 +21,13 @@ export class SubirObraPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SubirObraPage');
   }
+  
+    irPagSiguiente(){
+  	this.navCtrl.push('PublicarObraPage');
+  	}
+  	
+  irHome(){
+  	this.navCtrl.setRoot(HomePage);
+  	}
 
 }

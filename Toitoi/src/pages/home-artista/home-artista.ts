@@ -24,7 +24,7 @@ export class HomeArtistaPage {
   }
 
   irPagSiguiente(){
-  	this.navCtrl.push('HomeUsuarioPage');
+  	this.navCtrl.push('SubirObraPage');
   	}
   	
   irHome(){
