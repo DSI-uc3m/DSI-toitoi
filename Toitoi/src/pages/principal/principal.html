@@ -1,0 +1,36 @@
+<!--
+  Generated template for the PrincipalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <ion-title>
+		Toi-toi
+		</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<h1> Toitoi </h1>
+<hr/>
+<button ion-button icon-only (click)="irHome()">
+<ion-icon name="home"></ion-icon>
+</button>
+
+<button ion-button color="light" icon-left small (click)="irUsuario()">
+Ver obra
+<ion-icon name='arrow-forward'></ion-icon>
+</button>
+<button ion-button color="light" icon-left small (click)="irArtista()">
+Subir obra
+<ion-icon name='arrow-forward'></ion-icon>
+</button>
+</ion-content>
