@@ -19,8 +19,34 @@
 
 
 <ion-content padding>
-<h1> Toitoi </h1>
-<hr/>
+
+  <ion-card>
+  <img src="/assets/imgs/card-sf.png" title='Soy YO'/>
+  <div class="card-title">Guernika</div>
+  <div class="card-subtitle">Picasso</div>
+  </ion-card>
+
+<ion-card>
+
+  <ion-list>
+    <button ion-item>
+      <ion-icon name="cart" item-start></ion-icon>
+      Comprar
+    </button>
+
+    <button ion-item>
+      <ion-icon name="brush" item-start></ion-icon>
+      Ver obra
+    </button>
+
+    <button ion-item>
+      <ion-icon name="person" item-start></ion-icon>
+      Ver artista
+    </button>
+
+
+  </ion-list>
+</ion-card>
 <button ion-button icon-only (click)="irHome()">
 <ion-icon name="home"></ion-icon>
 </button>
