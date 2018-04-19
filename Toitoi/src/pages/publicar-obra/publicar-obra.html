@@ -1,3 +1,4 @@
+<!DOCTYPE HTML>
 <!--
   Generated template for the PublicarObraPage page.
 
@@ -7,13 +8,17 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>publicar-obra</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Publicar obra</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+<!--
 <h1> Publicar una obra (subida) </h1>
 <hr/>
 <button ion-button icon-only (click)="irHome()">
@@ -24,4 +29,17 @@
 Publicar obra
 <ion-icon name='arrow-forward'></ion-icon>
 </button>
+-->
+  <div id="imagen" text-center>
+    <img id="defim" src="https://vignette.wikia.nocookie.net/mitologa/images/a/a3/Imagen_por_defecto.png/revision/latest?cb=20150824230838&path-prefix=es">
+    <img [src]="image" *ngIf="image" />
+    <button ion-button block (click)="getPicture()">Haz una foto de tu obra</button>
+  </div>
+  <hr/>
+  <h5> Título de la obra</h5>
+  <ion-input id="tit" placeholder="Dale un nombre a tu obra..."></ion-input>
+  <h5>Descripción</h5>
+  <ion-textarea id="desc" placeholder="Añade una descripción a tu obra..."></ion-textarea>
+  <h5>Precio</h5> <ion-input min="0" step="0.01" id="price" type="number" placeholder="¡Intenta no pasarte!"></ion-input>
+  <button ion-button block id="publicar">Publicar obra</button>
 </ion-content>
