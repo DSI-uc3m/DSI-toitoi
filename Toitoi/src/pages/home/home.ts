@@ -11,9 +11,9 @@ export class HomePage {
 
   }
   
-  gotoPage(pagina)
+  login()
   {
-  	this.navCtrl.push(pagina);
+  	this.navCtrl.push('PrincipalPage');
   }
 
 }
