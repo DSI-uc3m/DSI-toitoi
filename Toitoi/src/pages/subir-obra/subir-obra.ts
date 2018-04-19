@@ -26,9 +26,5 @@ export class SubirObraPage {
     irPagSiguiente(){
   	this.navCtrl.setRoot(PublicarObraPage);
   	}
-  	
-  irHome(){
-  	this.navCtrl.setRoot(HomePage);
-  	}
 
 }

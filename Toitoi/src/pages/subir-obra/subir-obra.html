@@ -16,15 +16,27 @@
 
 
 <ion-content padding>
-  <img src="/assets/imgs/userpic.png" alt="logo"/>
-<button ion-button large>Large</button>
-<button ion-button icon-only (click)="irHome()">
-<ion-icon name="home"></ion-icon>
-</button>
+  <div text-center><img id="userpic" src="/assets/imgs/userpic.png" alt="logo"/> <h4> @toitoi_admin </h4>
+  <h6><ion-icon name="settings"></ion-icon><span>  </span>Editar datos de usuario <br></h6></div>
+<div text-center><button ion-button large (click)="irPagSiguiente()">Publicar una obra</button></div>
+<br>
+ <ion-list>
+     <button ion-item>
+      <ion-icon name="brush" item-start></ion-icon>
+      Mis obras
+    </button>
+	
+    <button ion-item>
+      <ion-icon name="cart" item-start></ion-icon>
+      Ventas
+    </button>
 
-<button ion-button color="light" icon-left small (click)="irPagSiguiente()">
-Publicar obra
-<ion-icon name='arrow-forward'></ion-icon>
-</button>
+    <button ion-item>
+      <ion-icon name="mail-open" item-start></ion-icon>
+      Pedidos
+    </button>
+
+
+  </ion-list>
 
 </ion-content>

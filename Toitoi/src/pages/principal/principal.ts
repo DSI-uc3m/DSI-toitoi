@@ -21,13 +21,4 @@ export class PrincipalPage {
     console.log('ionViewDidLoad PrincipalPage');
   }
 
-  irArtista(){
-  	this.navCtrl.push('SubirObraPage');
-  	}
-  	
-  irUsuario(){
-  	this.navCtrl.push('VerObraPage');
-  	}
-  	
-
 }
