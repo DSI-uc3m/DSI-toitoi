@@ -1,3 +1,16 @@
 page-publicar-obra {
 
 }
+$border-color: #e8e8e8;
+
+#tit, #price {
+  border-bottom: 1px solid $border-color;
+}
+#desc {
+  border: 1px solid $border-color;
+  height: 150px;
+}
+
+#publicar {
+  margin-top: 35px;
+}
