@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { PrincipalPage } from '../principal/principal';
 
 @Component({
   selector: 'page-home',
@@ -13,7 +14,7 @@ export class HomePage {
   
   login()
   {
-  	this.navCtrl.push('PrincipalPage');
+  	this.navCtrl.setRoot(PrincipalPage);
   }
 
 }
