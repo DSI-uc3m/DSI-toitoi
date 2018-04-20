@@ -6,22 +6,51 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>comprar-obra</ion-title>
+	<ion-navbar>
+	<button ion-button menuToggle>
+		<ion-icon name="menu"></ion-icon>
+   	</button>
+    <ion-title>Comprar obra</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-<h1> Comprando una obra </h1>
+<div text-center><h1> Detalles de la compra </h1></div>
 <hr/>
-<button ion-button icon-only (click)="irHome()">
-<ion-icon name="home"></ion-icon>
-</button>
 
-<button ion-button color="light" icon-left small (click)="watever()">
-PAGA
-<ion-icon name='arrow-forward'></ion-icon>
-</button>
+<div id="imagen" text-center>
+    <img id="imagenArte" src="https://vignette.wikia.nocookie.net/mitologa/images/a/a3/Imagen_por_defecto.png/revision/latest?cb=20150824230838&path-prefix=es">
+    <img [src]="image" *ngIf="image" />
+  </div>
+  
+<div text-center><h6>Título de la obra</h6> 
+
+
+<h3><img id="avatarAutor" src="/assets/imgs/userpic.png" alt="logo"><span> </span>Autor<br></h3>
+</div> 
+<br/>
+  
+<br/>
+  
+<ion-list>
+  <ion-item>
+    <ion-label>Método de pago</ion-label>
+    <ion-select [(ngModel)]="metodoPago">
+      <ion-option value="paypal">Paypal</ion-option>
+      <ion-option value="trans">Transferencia</ion-option>	  
+      <ion-option value="tarj">Tarjeta de crédito</ion-option>
+      <ion-option value="contr">Contra reembolso</ion-option>
+    </ion-select>
+  </ion-item>
+</ion-list>
+
+
+<button ion-button block id="publicar">Pagar</button>
+
+<br/>
+
+<div text-center><h1>Precio total: XX.XX € </h1></div>
+
 </ion-content>

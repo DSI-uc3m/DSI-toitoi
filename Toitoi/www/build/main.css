@@ -25678,6 +25678,16 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+#avatarAutor {
+  weight: 30px;
+  height: 30px;
+}
+
+#imagenArte {
+  weight: 250px;
+  height: 250px;
+}
+
 page-home ion-title {
   position: absolute;
   top: 0;

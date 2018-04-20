@@ -7,6 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { SubirObraPage } from '../pages/subir-obra/subir-obra';
 import { PrincipalPage } from '../pages/principal/principal';
 import { PublicarObraPage } from '../pages/publicar-obra/publicar-obra';
+import { ComprarObraPage } from '../pages/comprar-obra/comprar-obra';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -17,7 +18,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     SubirObraPage,
     PrincipalPage,
-	PublicarObraPage
+	PublicarObraPage,
+	ComprarObraPage
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     SubirObraPage,
     PrincipalPage,
-	PublicarObraPage
+	PublicarObraPage,
+	ComprarObraPage
   ],
   providers: [
     StatusBar,

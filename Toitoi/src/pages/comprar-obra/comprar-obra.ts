@@ -14,6 +14,7 @@ import { HomePage } from '../home/home';
   templateUrl: 'comprar-obra.html',
 })
 export class ComprarObraPage {
+  metodoPago: string = "Paypal";
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
