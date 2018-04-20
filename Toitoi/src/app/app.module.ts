@@ -8,7 +8,7 @@ import { SubirObraPage } from '../pages/subir-obra/subir-obra';
 import { PrincipalPage } from '../pages/principal/principal';
 import { PublicarObraPage } from '../pages/publicar-obra/publicar-obra';
 import { ComprarObraPage } from '../pages/comprar-obra/comprar-obra';
-
+import { VerObraPage } from '../pages/ver-obra/ver-obra';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -18,6 +18,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     SubirObraPage,
     PrincipalPage,
+	VerObraPage,
 	PublicarObraPage,
 	ComprarObraPage
   ],
@@ -31,6 +32,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     SubirObraPage,
     PrincipalPage,
+	VerObraPage,
 	PublicarObraPage,
 	ComprarObraPage
   ],

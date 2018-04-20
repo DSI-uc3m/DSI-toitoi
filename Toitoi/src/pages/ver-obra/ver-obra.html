@@ -7,21 +7,26 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>ver-obra</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <ion-title>
+Visualizador		</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-<h1> Visualizando una obra </h1>
+  <img src="/assets/imgs/street.jpg" title='street'/>
+<div class=t>Street <div class=p> Winter Quattuor   <ion-icon  name="contact" ></ion-icon> </div></div>
+ 
 <hr/>
-<button ion-button icon-only (click)="irHome()">
-<ion-icon name="home"></ion-icon>
-</button>
+<div id=descripcion> <h4>Descripción </h4>
+<div> La calle de apolo luce increíble al ocaso con los contrastes del crepusculo y las ventanas de los establecimientos recien encendidas.</div></div>
 
-<button ion-button color="light" icon-left small (click)="irPagSiguiente()">
-Comprar esta obra
+<button id=boton ion-button color="light" icon-right small (click)="irPagSiguiente()">
+Comprar
 <ion-icon name='arrow-forward'></ion-icon>
 </button>
 </ion-content>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { VerObraPage } from '../ver-obra/ver-obra';
 /**
  * Generated class for the PrincipalPage page.
  *
@@ -19,6 +20,10 @@ export class PrincipalPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PrincipalPage');
+  }
+    loginObra()
+  {
+  	this.navCtrl.setRoot(VerObraPage);
   }
 
 }
