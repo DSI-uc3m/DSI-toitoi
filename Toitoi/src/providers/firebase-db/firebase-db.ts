@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase} from 'angularfire2/database';
 import { fireBaseConfig } from '../../app/app.module';
-
+import { Login } from '../../models/login.model'
 /*
   Generated class for the FirebaseDbProvider provider.
 
