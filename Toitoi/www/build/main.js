@@ -114,7 +114,7 @@ var VerObraPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__ = __webpack_require__(270);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__ = __webpack_require__(312);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -290,13 +290,67 @@ module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 225:
+/***/ 166:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FirebaseDbProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__ = __webpack_require__(167);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+//import { HttpClient } from '@angular/common/http';
+
+
+/*
+  Generated class for the FirebaseDbProvider provider.
+
+  See https://angular.io/guide/dependency-injection for more info on providers
+  and Angular DI.
+*/
+var FirebaseDbProvider = /** @class */ (function () {
+    function FirebaseDbProvider(afDB) {
+        this.afDB = afDB;
+        this.clientesRef = this.afDB.list('login');
+        console.log('Hello FirebaseDbProvider Provider');
+    }
+    FirebaseDbProvider.prototype.registrar = function (loginTuple) {
+        if (loginTuple["id"] == "") {
+            loginTuple["id"] = "" + Date.now();
+        }
+        return this.afDB.database.ref('login/' + loginTuple["id"]).set(loginTuple);
+    };
+    FirebaseDbProvider.prototype.login = function (user, password) {
+        alert(this.getClientes()[0]);
+    };
+    FirebaseDbProvider.prototype.getClientes = function () {
+        return this.clientesRef.valueChanges();
+    };
+    FirebaseDbProvider = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */]])
+    ], FirebaseDbProvider);
+    return FirebaseDbProvider;
+}());
+
+//# sourceMappingURL=firebase-db.js.map
+
+/***/ }),
+
+/***/ 226:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(226);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(245);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(227);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(246);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -304,7 +358,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 245:
+/***/ 246:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -313,9 +367,9 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angularfire2_database__ = __webpack_require__(211);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_firebase_db_firebase_db__ = __webpack_require__(337);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angularfire2_database__ = __webpack_require__(167);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_firebase_db_firebase_db__ = __webpack_require__(166);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(338);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_home__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_subir_obra_subir_obra__ = __webpack_require__(111);
@@ -323,8 +377,8 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_publicar_obra_publicar_obra__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_comprar_obra_comprar_obra__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_ver_obra_ver_obra__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_status_bar__ = __webpack_require__(223);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_splash_screen__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_status_bar__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_splash_screen__ = __webpack_require__(225);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -347,12 +401,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 var fireBaseConfig = {
-    apiKey: "AIzaSyDuZH454-a8v05TUaRa5wG8N911-0DwuGE",
-    authDomain: "dsi-ionic.firebaseapp.com",
-    databaseURL: "https://dsi-ionic.firebaseio.com",
-    projectId: "dsi-ionic",
-    storageBucket: "dsi-ionic.appspot.com",
-    messagingSenderId: "652473996242"
+    apiKey: "AIzaSyAwHn9tvxa3rAaq_-CLf0PatvIt_HgSlPM",
+    authDomain: "toitoi-b7e8e.firebaseapp.com",
+    databaseURL: "https://toitoi-b7e8e.firebaseio.com",
+    projectId: "toitoi-b7e8e",
+    storageBucket: "toitoi-b7e8e.appspot.com",
+    messagingSenderId: "951785874859"
 };
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -408,47 +462,6 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 337:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FirebaseDbProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__ = __webpack_require__(211);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-//import { HttpClient } from '@angular/common/http';
-
-
-/*
-  Generated class for the FirebaseDbProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
-var FirebaseDbProvider = /** @class */ (function () {
-    function FirebaseDbProvider(afDB) {
-        this.afDB = afDB;
-        console.log('Hello FirebaseDbProvider Provider');
-    }
-    FirebaseDbProvider = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */]])
-    ], FirebaseDbProvider);
-    return FirebaseDbProvider;
-}());
-
-//# sourceMappingURL=firebase-db.js.map
-
-/***/ }),
-
 /***/ 338:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -456,8 +469,8 @@ var FirebaseDbProvider = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(223);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(225);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_subir_obra_subir_obra__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_principal_principal__ = __webpack_require__(57);
@@ -529,6 +542,7 @@ var MyApp = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__principal_principal__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_firebase_db_firebase_db__ = __webpack_require__(166);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -541,20 +555,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var HomePage = /** @class */ (function () {
-    function HomePage(navCtrl) {
+    function HomePage(navCtrl, dbFirebase) {
         this.navCtrl = navCtrl;
+        this.dbFirebase = dbFirebase;
     }
     HomePage.prototype.login = function () {
+        var _this = this;
+        alert(this.user + " " + this.password);
+        console.log(this.dbFirebase.getClientes().subscribe(function (listaClientes) { _this.listaClientes = listaClientes; }));
+        /*let usuario = {"id": "", "username": "hector", "password": "commit"};
+        this.dbFirebase.registrar(usuario).then(res=>{
+            alert("Cliente registrado");
+        });*/
         this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__principal_principal__["a" /* PrincipalPage */]);
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"D:\Rielbe\Documents\GitHub\DSI-toitoi\Toitoi\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>Toi-toi</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <h3>Entra a Toi-toi</h3>\n\n\n\n <button ion-button (click)="login()"> Login </button>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Rielbe\Documents\GitHub\DSI-toitoi\Toitoi\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"D:\Rielbe\Documents\GitHub\DSI-toitoi\Toitoi\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>Toi-toi</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <h3>Entra a Toi-toi</h3>\n\n  <ion-input [(ngModel)]="user" id="login" placeholder="Usuario"></ion-input>\n\n  <ion-input [(ngModel)]="password" id="login" placeholder="Password"></ion-input>\n\n <button ion-button (click)="login()"> Login </button>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Rielbe\Documents\GitHub\DSI-toitoi\Toitoi\src\pages\home\home.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__providers_firebase_db_firebase_db__["a" /* FirebaseDbProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_firebase_db_firebase_db__["a" /* FirebaseDbProvider */]) === "function" && _b || Object])
     ], HomePage);
     return HomePage;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=home.js.map
@@ -611,5 +635,5 @@ var PrincipalPage = /** @class */ (function () {
 
 /***/ })
 
-},[225]);
+},[226]);
 //# sourceMappingURL=main.js.map

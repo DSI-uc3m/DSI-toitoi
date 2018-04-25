@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { PublicarObraPage } from '../publicar-obra/publicar-obra';
+import {FirebaseDbProvider} from '../../providers/firebase-db/firebase-db';
 /**
  * Generated class for the SubirObraPage page.
  *
@@ -15,7 +16,7 @@ import { PublicarObraPage } from '../publicar-obra/publicar-obra';
   templateUrl: 'subir-obra.html',
 })
 export class SubirObraPage {
-
+  public username:string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 

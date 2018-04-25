@@ -11,9 +11,21 @@ import { fireBaseConfig } from '../../app/app.module';
 */
 @Injectable()
 export class FirebaseDbProvider {
-
   constructor(public afDB:AngularFireDatabase) {
-    console.log('Hello FirebaseDbProvider Provider');
+	console.log('Hello FirebaseDbProvider Provider');
   }
+  private clientesRef=this.afDB.list<any>('login');
 
+  registrar( loginTuple ) {
+  	if(loginTuple["id"]=="") {
+  		loginTuple["id"]=""+Date.now();
+  	}
+  	 return this.afDB.database.ref('login/'+loginTuple["id"]).set(loginTuple);
+  }
+  login( user, password ) {
+  	alert(this.getClientes()[0]);
+  }
+  getClientes() {
+	return this.clientesRef.valueChanges();
+  } 
 }

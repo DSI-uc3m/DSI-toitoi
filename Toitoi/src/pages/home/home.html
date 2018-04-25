@@ -6,7 +6,8 @@
 
 <ion-content padding>
   <h3>Entra a Toi-toi</h3>
-
+  <ion-input [(ngModel)]="user" id="login" placeholder="Usuario"></ion-input>
+  <ion-input [(ngModel)]="password" id="login" placeholder="Password"></ion-input>
  <button ion-button (click)="login()"> Login </button>
 
 

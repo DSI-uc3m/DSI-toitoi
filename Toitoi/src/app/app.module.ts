@@ -16,12 +16,13 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 export const fireBaseConfig={
-apiKey: "AIzaSyDuZH454-a8v05TUaRa5wG8N911-0DwuGE",
- authDomain: "dsi-ionic.firebaseapp.com",
- databaseURL: "https://dsi-ionic.firebaseio.com",
- projectId: "dsi-ionic",
- storageBucket: "dsi-ionic.appspot.com",
-messagingSenderId: "652473996242"};
+    apiKey: "AIzaSyAwHn9tvxa3rAaq_-CLf0PatvIt_HgSlPM",
+    authDomain: "toitoi-b7e8e.firebaseapp.com",
+    databaseURL: "https://toitoi-b7e8e.firebaseio.com",
+    projectId: "toitoi-b7e8e",
+    storageBucket: "toitoi-b7e8e.appspot.com",
+    messagingSenderId: "951785874859"
+};
 
 @NgModule({
   declarations: [
