@@ -51,16 +51,19 @@ export class HomePage {
             });
             toast.present();
             this.navCtrl.setRoot(PrincipalPage);
+            return;
         }
     }
+
     let toast = this.toastCtrl.create({
         message: 'Usuario y/o contraseña incorrecto',
         duration: 3000,
         position: 'bot'
     });
     toast.present();
-  	
+    
   }
+  
   ionViewDidEnter() {
     this.dbFirebase.getClientes().subscribe(logins=>{this.logins=logins;});
   }

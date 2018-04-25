@@ -30,23 +30,46 @@ export class PublicarObraPage {
   	this.navCtrl.setRoot(HomePage);
   }
 
-  getPicture() {
-      let options: CameraOptions = {
-        destinationType: this.camera.DestinationType.DATA_URL,
-        targetWidth: 500,
-        targetHeight: 500,
-        quality: 100,
-        correctOrientation: true
-      }
-      this.camera.getPicture( options )
-      .then(imageData => {
-        this.image = `data:image/jpeg;base64,${imageData}`;
-      })
-      .catch(error =>{
-        console.error( error );
-      });
-      var defim = document.getElementById('defim');
-      defim.setAttribute("style","display: none");
-  }
+    getPicture() {
+        let options: CameraOptions = {
+            destinationType: this.camera.DestinationType.DATA_URL,
+            sourceType: 2,
+            allowEdit: true,
+            targetWidth: 500,
+            targetHeight: 500,
+            quality: 100,
+            correctOrientation: true
+          }
+          this.camera.getPicture( options )
+          .then(imageData => {
+            this.image = `data:image/jpeg;base64,${imageData}`;
+          })
+          .catch(error =>{
+            console.error( error );
+          });
+          //var defim = document.getElementById('defim');
+          //defim.setAttribute("style","display: none");
+    }
+
+    takePicture() {
+        let options: CameraOptions = {
+            destinationType: this.camera.DestinationType.DATA_URL,
+            sourceType: 1,
+            allowEdit: true,
+            targetWidth: 500,
+            targetHeight: 500,
+            quality: 100,
+            correctOrientation: true
+        }
+        this.camera.getPicture( options )
+            .then(imageData => {
+                this.image = `data:image/jpeg;base64,${imageData}`;
+            })
+            .catch(error =>{
+                console.error( error );
+            });
+        //var defim = document.getElementById('defim');
+        //defim.setAttribute("style","display: none");
+    }
 
 }

@@ -31,9 +31,13 @@ Publicar obra
 </button>
 -->
   <div id="imagen" text-center>
-    <img id="defim" src="https://vignette.wikia.nocookie.net/mitologa/images/a/a3/Imagen_por_defecto.png/revision/latest?cb=20150824230838&path-prefix=es">
+    <!--
+    <img id="defim" src="https://vignette.wikia.nocookie.net/mitologa/images/a/a3/Imagen_por_defecto.png/revision/latest?cb=20150824230838&path-prefix=es">-->
     <img [src]="image" *ngIf="image" />
-    <button ion-button block (click)="getPicture()">Haz una foto de tu obra</button>
+    <button ion-button block (click)="getPicture()">Selecciona una imagen de tu galería</button>
+    <br>
+    <div text-center><h5>O</h5></div>
+    <button ion-button block (click)="takePicture()">Saca una foto a tu obra</button>
   </div>
   <hr/>
   <h5> Título de la obra</h5>
