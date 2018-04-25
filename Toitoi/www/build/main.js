@@ -585,18 +585,37 @@ var HomePage = /** @class */ (function () {
     }
     HomePage.prototype.registro = function () {
         var log = new __WEBPACK_IMPORTED_MODULE_4__models_login_model__["a" /* Login */](this.user, this.password);
+        for (var _i = 0, _a = this.logins; _i < _a.length; _i++) {
+            var x = _a[_i];
+            if (log.username == x.username) {
+                var toast_1 = this.toastCtrl.create({
+                    message: 'El usuario seleccionado no está disponible',
+                    duration: 3000,
+                    position: 'bot'
+                });
+                toast_1.present();
+                return;
+            }
+        }
         this.dbFirebase.registrar(log);
+        var toast = this.toastCtrl.create({
+            message: 'Registro correcto',
+            duration: 3000,
+            position: 'bot'
+        });
+        toast.present();
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__principal_principal__["a" /* PrincipalPage */]);
     };
     HomePage.prototype.login = function () {
         for (var _i = 0, _a = this.logins; _i < _a.length; _i++) {
             var x = _a[_i];
             if (this.user == x.username && this.password == x.password) {
-                var toast_1 = this.toastCtrl.create({
+                var toast_2 = this.toastCtrl.create({
                     message: 'Inicio de sesión correcta',
                     duration: 3000,
                     position: 'bot'
                 });
-                toast_1.present();
+                toast_2.present();
                 this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__principal_principal__["a" /* PrincipalPage */]);
             }
         }
@@ -613,7 +632,7 @@ var HomePage = /** @class */ (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"D:\Rielbe\Documents\GitHub\DSI-toitoi\Toitoi\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>Toi-toi</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <h3>Entra a Toi-toi</h3>\n\n  <ion-input [(ngModel)]="user" id="login" placeholder="Usuario"></ion-input>\n\n  <ion-input [(ngModel)]="password" id="login" placeholder="Password"></ion-input>\n\n <button ion-button (click)="login()"> Login </button>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Rielbe\Documents\GitHub\DSI-toitoi\Toitoi\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"D:\Rielbe\Documents\GitHub\DSI-toitoi\Toitoi\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>Toi-toi</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <div text-center>\n\n  <h3>Entra a Toi-toi</h3>\n\n  <ion-input [(ngModel)]="user" id="login" placeholder="Usuario"></ion-input>\n\n  <ion-input [(ngModel)]="password" id="login" placeholder="Password"></ion-input>\n\n <button ion-button block (click)="login()"> Login </button>\n\n <br>\n\n <button ion-button block (click)="registro()"> Registro </button>\n\n    </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Rielbe\Documents\GitHub\DSI-toitoi\Toitoi\src\pages\home\home.html"*/
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__providers_firebase_db_firebase_db__["a" /* FirebaseDbProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_firebase_db_firebase_db__["a" /* FirebaseDbProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */]) === "function" && _c || Object])
     ], HomePage);

@@ -19,8 +19,27 @@ export class HomePage {
   }
   registro() {
     let log:Login = new Login(this.user,this.password);
-    this.dbFirebase.registrar(log);
+    for(let x of this.logins) {
+        if(log.username == x.username ) {
+            let toast = this.toastCtrl.create({
+                message: 'El usuario seleccionado no está disponible',
+                duration: 3000,
+                position: 'bot'
+            });
+            toast.present();
+            return;
+        }
+    }
+    this.dbFirebase.registrar(log);    
+    let toast = this.toastCtrl.create({
+        message: 'Registro correcto',
+        duration: 3000,
+        position: 'bot'
+    });
+    toast.present();    
+    this.navCtrl.setRoot(PrincipalPage);
   }
+
   login()
   {
     for(let x of this.logins) {
