@@ -41,9 +41,9 @@ Publicar obra
   </div>
   <hr/>
   <h5> Título de la obra</h5>
-  <ion-input id="tit" placeholder="Dale un nombre a tu obra..."></ion-input>
+  <ion-input [(ngModel)]="tit" id="tit" placeholder="Dale un nombre a tu obra..."></ion-input>
   <h5>Descripción</h5>
-  <ion-textarea id="desc" placeholder="Añade una descripción a tu obra..."></ion-textarea>
-  <h5>Precio</h5> <ion-input min="0" step="0.01" id="price" type="number" placeholder="¡Intenta no pasarte!"></ion-input>
-  <button ion-button block id="publicar">Publicar obra</button>
+  <ion-textarea [(ngModel)]="desc" id="desc" placeholder="Añade una descripción a tu obra..."></ion-textarea>
+  <h5>Precio</h5> <ion-input [(ngModel)]="pri" min="0" step="1" id="price" type="number" placeholder="¡Intenta no pasarte!"></ion-input>
+  <button ion-button block (click)="publicarObra()" id="publicar">Publicar obra</button>
 </ion-content>
