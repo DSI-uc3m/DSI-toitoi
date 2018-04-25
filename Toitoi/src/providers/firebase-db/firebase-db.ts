@@ -14,16 +14,16 @@ export class FirebaseDbProvider {
   constructor(public afDB:AngularFireDatabase) {
 	console.log('Hello FirebaseDbProvider Provider');
   }
-  private clientesRef=this.afDB.list<any>('login');
+  private clientesRef=this.afDB.list<Login>('login');
 
-  registrar( loginTuple ) {
-  	if(loginTuple["id"]=="") {
-  		loginTuple["id"]=""+Date.now();
+  registrar( loginTuple:Login ) {
+  	if(loginTuple.id=="") {
+  		loginTuple.id=""+Date.now();
   	}
-  	 return this.afDB.database.ref('login/'+loginTuple["id"]).set(loginTuple);
+  	return this.afDB.database.ref('login/'+loginTuple.id).set(loginTuple);
   }
   login( user, password ) {
-  	alert(this.getClientes()[0]);
+  	//
   }
   getClientes() {
 	return this.clientesRef.valueChanges();
