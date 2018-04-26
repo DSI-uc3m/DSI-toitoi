@@ -28,7 +28,7 @@ export class SubirObraPage {
   }
   
     irPagSiguiente(){
-  	this.navCtrl.setRoot(PublicarObraPage, {username: this.user});
+  	this.navCtrl.setRoot(PublicarObraPage, {username: this.user, userpic: this.pic});
   	}
 
 }

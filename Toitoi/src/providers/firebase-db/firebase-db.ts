@@ -34,6 +34,6 @@ export class FirebaseDbProvider {
         if(obra.id=="") {
             obra.id="OB"+Date.now();
         }
-        return this.afDB.database.ref('obras/'+obra.username+'/'+obra.id).set(obra);
+        return this.afDB.database.ref('obras/'+obra.id).set(obra);
     }
 }

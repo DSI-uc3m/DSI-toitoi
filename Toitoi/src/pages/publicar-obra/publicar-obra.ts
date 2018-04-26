@@ -6,6 +6,7 @@ import { Obra } from '../../models/obra.model'
 import {FirebaseDbProvider} from '../../providers/firebase-db/firebase-db';
 import { PrincipalPage } from '../principal/principal';
 import { ToastController } from 'ionic-angular';
+import { SubirObraPage } from '../subir-obra/subir-obra';
 /**
  * Generated class for the PublicarObraPage page.
  *
@@ -23,7 +24,8 @@ import { ToastController } from 'ionic-angular';
 })
 export class PublicarObraPage {
     image: string = null;
-    user: string = "Test"; //Aquí recibiría el user a través de las páginas anteriores
+    user: string = this.navParams.get('username');
+    temp_pic: string = this.navParams.get('userpic');
     tit: string = null;
     desc: string = null;
     pri: number = null;
@@ -33,10 +35,6 @@ export class PublicarObraPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PublicarObraPage');
-  }
-  	
-  irHome(){
-  	this.navCtrl.setRoot(HomePage);
   }
 
     getPicture() {
@@ -110,7 +108,7 @@ export class PublicarObraPage {
             position: 'bot'
         });
         toast.present();
-        this.navCtrl.setRoot(PrincipalPage);
+        this.navCtrl.setRoot(SubirObraPage, {username: this.user, userpic: this.temp_pic});
     }
 
 }
