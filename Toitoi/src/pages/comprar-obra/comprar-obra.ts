@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { Obra } from '../../models/obra.model';
 /**
  * Generated class for the ComprarObraPage page.
  *
@@ -15,6 +16,8 @@ import { HomePage } from '../home/home';
 })
 export class ComprarObraPage {
   metodoPago: string = "Paypal";
+  obra = this.navParams.get('obra');
+  user = this.navParams.get('username');
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

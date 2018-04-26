@@ -21,14 +21,14 @@
 <hr/>
 
 <div id="imagen" text-center>
-    <img id="imagenArte" src="https://vignette.wikia.nocookie.net/mitologa/images/a/a3/Imagen_por_defecto.png/revision/latest?cb=20150824230838&path-prefix=es">
+    <img id="imagenArte" src="{{obra.image}}" title='{{obra.title}}'/>
     <img [src]="image" *ngIf="image" />
   </div>
   
-<div text-center><h6>Título de la obra</h6> 
+<div text-center><h6>{{obra.title}}</h6> 
 
 
-<h3><img id="avatarAutor" src="/assets/imgs/userpic.png" alt="logo"><span> </span>Autor<br></h3>
+<h3><img id="avatarAutor" src="/assets/imgs/userpic.png" alt="logo"><span> </span>@{{obra.username}}<br></h3>
 </div> 
 <br/>
   
@@ -51,6 +51,6 @@
 
 <br/>
 
-<div text-center><h1>Precio total: XX.XX € </h1></div>
+<div text-center><h1>Precio total: {{obra.price}} € </h1></div>
 
 </ion-content>
