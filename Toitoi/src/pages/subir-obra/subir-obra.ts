@@ -16,16 +16,19 @@ import {FirebaseDbProvider} from '../../providers/firebase-db/firebase-db';
   templateUrl: 'subir-obra.html',
 })
 export class SubirObraPage {
-  public username:string;
+  public user;
+  public pic;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SubirObraPage');
+	this.user = this.navParams.get('username');
+	this.pic = this.navParams.get('userpic');
   }
   
     irPagSiguiente(){
-  	this.navCtrl.setRoot(PublicarObraPage);
+  	this.navCtrl.setRoot(PublicarObraPage, {username: this.user});
   	}
 
 }

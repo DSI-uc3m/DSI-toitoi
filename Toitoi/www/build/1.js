@@ -27,7 +27,7 @@ var SubirObraPageModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_2__subir_obra__["a" /* SubirObraPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__subir_obra__["a" /* SubirObraPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__subir_obra__["a" /* SubirObraPage */]),
             ],
         })
     ], SubirObraPageModule);

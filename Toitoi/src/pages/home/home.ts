@@ -4,7 +4,8 @@ import { ToastController } from 'ionic-angular';
 import { PrincipalPage } from '../principal/principal';
 import { ComprarObraPage } from '../comprar-obra/comprar-obra';
 import {FirebaseDbProvider} from '../../providers/firebase-db/firebase-db';
-import {Login} from '../../models/login.model'
+import {Login} from '../../models/login.model';
+import { Events } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -14,11 +15,11 @@ export class HomePage {
   logins:any;
   public user;
   public password;
-  constructor(public navCtrl: NavController, public dbFirebase:FirebaseDbProvider, private toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public dbFirebase:FirebaseDbProvider, private toastCtrl: ToastController, public events: Events) {
 
   }
   registro() {
-    let log:Login = new Login(this.user,this.password);
+    let log:Login = new Login(this.user,this.password, "../assets/imgs/logo.png");
     for(let x of this.logins) {
         if(log.username == x.username ) {
             let toast = this.toastCtrl.create({
@@ -37,7 +38,8 @@ export class HomePage {
         position: 'bot'
     });
     toast.present();    
-    this.navCtrl.setRoot(PrincipalPage);
+	this.events.publish('test', this.user, log.img);
+    this.navCtrl.setRoot(PrincipalPage, {username: this.user, userpic: log.img});
   }
 
   login()
@@ -50,7 +52,8 @@ export class HomePage {
                 position: 'bot'
             });
             toast.present();
-            this.navCtrl.setRoot(PrincipalPage);
+			this.events.publish('test', this.user, x.img);
+            this.navCtrl.setRoot(PrincipalPage, {username: this.user, userpic: x.img});
             return;
         }
     }

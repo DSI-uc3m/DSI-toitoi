@@ -2,23 +2,25 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
 import { HomePage } from '../pages/home/home';
 import { SubirObraPage } from '../pages/subir-obra/subir-obra';
 import { PrincipalPage } from '../pages/principal/principal';
 import { ComprarObraPage } from '../pages/comprar-obra/comprar-obra';
+import { Events } from 'ionic-angular';
+
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
+	public app_username = "aa";
+	public app_userpic;
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = HomePage;
 
   pages: Array<{title: string, component: any}>;
-
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public events: Events) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -28,6 +30,10 @@ export class MyApp {
       { title: 'Cerrar sesión', component: HomePage }
     ];
 
+	events.subscribe('test', (user, pic) => {
+		this.app_username = user;
+		this.app_userpic = pic;
+	});
   }
 
   initializeApp() {
@@ -42,6 +48,6 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    this.nav.setRoot(page.component, {username: this.app_username, userpic: this.app_userpic});
   }
 }
