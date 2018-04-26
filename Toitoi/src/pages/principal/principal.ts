@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { VerObraPage } from '../ver-obra/ver-obra';
 import { ComprarObraPage } from '../comprar-obra/comprar-obra';
 import {FirebaseDbProvider} from '../../providers/firebase-db/firebase-db';
-import { Obra } from '../../models/obra.models';
+import { Obra } from '../../models/obra.model';
 /**
  * Generated class for the PrincipalPage page.
  *
