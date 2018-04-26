@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { VerObraPage } from '../ver-obra/ver-obra';
+import { ComprarObraPage } from '../comprar-obra/comprar-obra';
+import {FirebaseDbProvider} from '../../providers/firebase-db/firebase-db';
+import { Obra } from '../../models/obra.models';
 /**
  * Generated class for the PrincipalPage page.
  *
@@ -14,7 +17,8 @@ import { VerObraPage } from '../ver-obra/ver-obra';
   templateUrl: 'principal.html',
 })
 export class PrincipalPage {
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  obras:any;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dbFirebase:FirebaseDbProvider) {
   }
   
     public user;
@@ -25,9 +29,18 @@ export class PrincipalPage {
 	this.user =  this.navParams.get('username');
 	this.pic = this.navParams.get('userpic');
   }
-    loginObra()
+    verObra(obr:Obra)
   {
-  	this.navCtrl.setRoot(VerObraPage);
+  	this.navCtrl.setRoot(VerObraPage, {username: this.user, obra:obr});
+  }
+
+      comprarObra(obr:Obra)
+  {
+    this.navCtrl.setRoot(ComprarObraPage, {username: this.user, obra:obr});
+  }
+
+  ionViewDidEnter() {
+    this.dbFirebase.getObras().subscribe(obras=>{this.obras=obras;});
   }
 
 }

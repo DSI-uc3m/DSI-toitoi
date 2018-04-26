@@ -16,6 +16,7 @@ export class FirebaseDbProvider {
 	console.log('Hello FirebaseDbProvider Provider');
   }
   private clientesRef=this.afDB.list<Login>('login');
+  private obrasRef=this.afDB.list<Obra>('obras');
 
   registrar( loginTuple:Login ) {
   	if(loginTuple.id=="") {
@@ -35,5 +36,9 @@ export class FirebaseDbProvider {
             obra.id="OB"+Date.now();
         }
         return this.afDB.database.ref('obras/'+obra.id).set(obra);
+    }
+
+    getObras() {
+      return this.obrasRef.valueChanges();
     }
 }

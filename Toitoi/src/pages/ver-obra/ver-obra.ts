@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { ComprarObraPage} from '../comprar-obra/comprar-obra';
+import { Obra } from '../../models/obra.model';
 
 /**
  * Generated class for the VerObraPage page.
@@ -16,7 +17,8 @@ import { ComprarObraPage} from '../comprar-obra/comprar-obra';
   templateUrl: 'ver-obra.html',
 })
 export class VerObraPage {
-
+  obra = this.navParams.get('obra');
+  user = this.navParams.get('username');
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -25,7 +27,7 @@ export class VerObraPage {
   }
   
     irPagSiguiente(){
-  	this.navCtrl.setRoot(ComprarObraPage);
+  	this.navCtrl.setRoot(ComprarObraPage, {username: this.user, obra:this.obra});
   	}
   	
   irHome(){

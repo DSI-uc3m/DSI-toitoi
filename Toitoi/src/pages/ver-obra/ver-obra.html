@@ -18,15 +18,15 @@ Visualizador		</ion-title>
 
 
 <ion-content padding>
-  <img src="/assets/imgs/street.jpg" title='street'/>
-<div class=t>Street <div class=p> Winter Quattuor   <ion-icon  name="contact" ></ion-icon> </div></div>
+  <img src="{{obra.image}}" title='{{obra.title}}'/>
+<div class=t>{{obra.title}} <div class=p>{{obra.username}} <ion-icon  name="contact" ></ion-icon> </div></div>
  
 <hr/>
 <div id=descripcion> <h4>Descripción </h4>
-<div> La calle de apolo luce increíble al ocaso con los contrastes del crepusculo y las ventanas de los establecimientos recien encendidas.</div></div>
+<div>{{obra.description}}</div></div>
 
 <button id=boton ion-button color="light" icon-right small (click)="irPagSiguiente()">
 Comprar
 <ion-icon name='arrow-forward'></ion-icon>
 </button>
-</ion-content>
+</ion-content> 

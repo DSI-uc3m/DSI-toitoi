@@ -19,7 +19,38 @@
 
 
 <ion-content padding>
+<div *ngFor="let obra of obras">
+<ion-card>
+  <img src="{{obra.image}}" title='{{obra.title}}'/>
+  <div class="card-title">{{obra.title}}</div>
+  <div class="card-subtitle">@{{obra.username}}</div>
+  </ion-card>
 
+<ion-card>
+
+  <ion-list>
+    <button ion-item (click)="comprarObra(obra)">
+      <ion-icon name="cart" item-start></ion-icon>
+      Comprar
+    </button>
+
+    <button ion-item (click)="verObra(obra)">
+      <ion-icon name="brush" item-start></ion-icon>
+      Ver obra
+    </button>
+
+    <button ion-item>
+      <ion-icon name="person" item-start></ion-icon>
+      Ver artista
+    
+    </button>
+
+
+  </ion-list>
+</ion-card>
+
+</div>
+<!--
 <ion-card>
   <img src="/assets/imgs/street.jpg" title='street'/>
   <div class="card-title">Street</div>
@@ -104,5 +135,5 @@
 
   </ion-list>
 </ion-card>
-
+-->
 </ion-content>
