@@ -38,9 +38,24 @@ export class PrincipalPage {
   {
     this.navCtrl.setRoot(ComprarObraPage, {username: this.user, obra:obr});
   }
-
+   listener(firebase) {
+    this.obras = firebase.comprobarNoti();
+    //firebase.getObras().subscribe(obras=>{this.obras=obras;});
+    console.log(this.obras);
+    for(obra in this.obras) {
+        if(obra.notification === 1 && obra.username === this.app_username) {
+                let toast = this.toastCtrl.create({
+                    message: obra.title+' vendida.',
+                    duration: 3000,
+                    position: 'top'
+                });
+        }
+    }
+   }
   ionViewDidEnter() {
+
     this.dbFirebase.getObras().subscribe(obras=>{this.obras=obras;});
+    this.timer = setInterval(this.listener(this.dbFirebase), 5000);
   }
 
 }

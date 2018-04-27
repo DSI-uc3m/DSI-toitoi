@@ -7,7 +7,9 @@ import { SubirObraPage } from '../pages/subir-obra/subir-obra';
 import { PrincipalPage } from '../pages/principal/principal';
 import { ComprarObraPage } from '../pages/comprar-obra/comprar-obra';
 import { Events } from 'ionic-angular';
-
+import {FirebaseDbProvider} from '../providers/firebase-db/firebase-db';
+import { Obra } from '../models/obra.model';
+import { ToastController } from 'ionic-angular';
 
 @Component({
   templateUrl: 'app.html'
@@ -18,9 +20,9 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = HomePage;
-
+  obras:any;
   pages: Array<{title: string, component: any}>;
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public events: Events) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public dbFirebase:FirebaseDbProvider, public splashScreen: SplashScreen, public events: Events, private toastCtrl: ToastController) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -34,6 +36,11 @@ export class MyApp {
 		this.app_username = user;
 		this.app_userpic = pic;
 	});
+    /*
+    events.subscribe('listener',() => {
+        this.timer = setInterval(this.listener, 5000);
+    });
+    */
   }
 
   initializeApp() {
@@ -42,6 +49,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      
     });
   }
 

@@ -52,7 +52,8 @@ export class HomePage {
                 position: 'bot'
             });
             toast.present();
-			this.events.publish('test', this.user, x.img);
+            this.events.publish('listener');
+			      this.events.publish('test', this.user, x.img);
             this.navCtrl.setRoot(PrincipalPage, {username: this.user, userpic: x.img});
             return;
         }

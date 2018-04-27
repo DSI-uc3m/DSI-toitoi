@@ -41,4 +41,12 @@ export class FirebaseDbProvider {
     getObras() {
       return this.obrasRef.valueChanges();
     }
+    comprobarNoti() {
+      return this.afDB.database().ref('obras/');
+    }
+
+    pushNotificar( obra:Obra ) {
+        obra.notification=1;
+        return this.afDB.database.ref('obras/'+obra.id).set(obra);
+    }
 }

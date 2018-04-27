@@ -55,7 +55,6 @@ export const fireBaseConfig={
     SplashScreen,
     FirebaseDbProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    FirebaseDbProvider
   ]
 })
 export class AppModule {}

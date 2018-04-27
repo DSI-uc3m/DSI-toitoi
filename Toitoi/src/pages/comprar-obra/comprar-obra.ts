@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { Obra } from '../../models/obra.model';
+import {FirebaseDbProvider} from '../../providers/firebase-db/firebase-db';
 /**
  * Generated class for the ComprarObraPage page.
  *
@@ -19,7 +20,7 @@ export class ComprarObraPage {
   obra = this.navParams.get('obra');
   user = this.navParams.get('username');
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dbFirebase:FirebaseDbProvider) {
   }
 
   ionViewDidLoad() {
@@ -29,5 +30,7 @@ export class ComprarObraPage {
   irHome(){
   	this.navCtrl.setRoot(HomePage);
   	}
-
+  comprarObra() {
+        this.dbFirebase.pushNotificar( this.obra );
+  }
 }
