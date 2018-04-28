@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HomePage } from '../home/home';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Obra } from '../../models/obra.model'
 import {FirebaseDbProvider} from '../../providers/firebase-db/firebase-db';
-import { PrincipalPage } from '../principal/principal';
 import { ToastController } from 'ionic-angular';
 import { SubirObraPage } from '../subir-obra/subir-obra';
 /**

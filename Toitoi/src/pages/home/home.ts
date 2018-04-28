@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, MenuController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { PrincipalPage } from '../principal/principal';
-import { ComprarObraPage } from '../comprar-obra/comprar-obra';
 import {FirebaseDbProvider} from '../../providers/firebase-db/firebase-db';
 import {Login} from '../../models/login.model';
 import { Events } from 'ionic-angular';
@@ -15,7 +14,7 @@ export class HomePage {
   logins:any;
   public user;
   public password;
-  constructor(public navCtrl: NavController, public dbFirebase:FirebaseDbProvider, private toastCtrl: ToastController, public events: Events) {
+  constructor(public navCtrl: NavController, public dbFirebase:FirebaseDbProvider, private toastCtrl: ToastController, public events: Events, private menu: MenuController) {
 
   }
   registro() {
@@ -53,7 +52,7 @@ export class HomePage {
             });
             toast.present();
             this.events.publish('listener');
-			      this.events.publish('test', this.user, x.img);
+			this.events.publish('test', this.user, x.img);
             this.navCtrl.setRoot(PrincipalPage, {username: this.user, userpic: x.img});
             return;
         }
@@ -69,6 +68,11 @@ export class HomePage {
   }
   
   ionViewDidEnter() {
+	this.menu.swipeEnable(false);
     this.dbFirebase.getClientes().subscribe(logins=>{this.logins=logins;});
   }
+  
+  ionViewWillLeave() {
+    this.menu.swipeEnable(true);
+   }
 }

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { ComprarObraPage} from '../comprar-obra/comprar-obra';
-import { Obra } from '../../models/obra.model';
 
 /**
  * Generated class for the VerObraPage page.

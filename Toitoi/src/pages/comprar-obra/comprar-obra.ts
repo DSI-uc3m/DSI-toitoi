@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
-import { Obra } from '../../models/obra.model';
 import {FirebaseDbProvider} from '../../providers/firebase-db/firebase-db';
 /**
  * Generated class for the ComprarObraPage page.

@@ -1,7 +1,6 @@
 //import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase} from 'angularfire2/database';
-import { fireBaseConfig } from '../../app/app.module';
+import { AngularFireDatabase} from 'angularfire2/database';;
 import { Login } from '../../models/login.model'
 import { Obra } from '../../models/obra.model'
 /*
@@ -24,9 +23,6 @@ export class FirebaseDbProvider {
   	}
   	return this.afDB.database.ref('login/'+loginTuple.id).set(loginTuple);
   }
-  login( user, password ) {
-  	//
-  }
   getClientes() {
 	return this.clientesRef.valueChanges();
   } 
@@ -41,12 +37,9 @@ export class FirebaseDbProvider {
     getObras() {
       return this.obrasRef.valueChanges();
     }
-    comprobarNoti() {
-      return this.afDB.database().ref('obras/');
-    }
-
     pushNotificar( obra:Obra ) {
         obra.notification=1;
         return this.afDB.database.ref('obras/'+obra.id).set(obra);
     }
+	
 }

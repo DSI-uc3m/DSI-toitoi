@@ -5,11 +5,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { SubirObraPage } from '../pages/subir-obra/subir-obra';
 import { PrincipalPage } from '../pages/principal/principal';
-import { ComprarObraPage } from '../pages/comprar-obra/comprar-obra';
 import { Events } from 'ionic-angular';
 import {FirebaseDbProvider} from '../providers/firebase-db/firebase-db';
-import { Obra } from '../models/obra.model';
 import { ToastController } from 'ionic-angular';
+import * as firebase from 'firebase';
 
 @Component({
   templateUrl: 'app.html'
@@ -36,11 +35,6 @@ export class MyApp {
 		this.app_username = user;
 		this.app_userpic = pic;
 	});
-    /*
-    events.subscribe('listener',() => {
-        this.timer = setInterval(this.listener, 5000);
-    });
-    */
   }
 
   initializeApp() {
@@ -49,6 +43,24 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+	  var ref = firebase.database().ref("obras");
+	  ref.on('child_changed', (childSnapshot, prevChildKey) => {
+		let noti = childSnapshot.child("notification").val();
+		if (noti == 1){
+			let autor = childSnapshot.child("username").val();
+			let obr = childSnapshot.child("title").val();
+			let id = childSnapshot.child("id").val();
+			if (autor == this.app_username){
+				let toast = this.toastCtrl.create({
+				message: 'Tu obra ' + obr + ' ha sido comprada.',
+				duration: 3000,
+				position: 'top'
+			});
+			toast.present();
+			firebase.database().ref('obras/'+id+'/notification').set("0");
+			}
+		}
+		});
       
     });
   }
