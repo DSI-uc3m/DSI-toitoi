@@ -51,6 +51,12 @@ export class MyApp {
       this.splashScreen.hide();
 	  var refObras = firebase.database().ref("obras");
 	  
+	  	/*var ref = firebase.database().ref("login/"+this.app_userid);
+				ref.on('child_changed', (snapshot, prevChildKey) =>{
+					this.app_saldo = snapshot.val();
+					this.user.saldo = this.app_saldo;
+			});*/
+	  
 	  refObras.on('child_changed', (childSnapshot, prevChildKey) => {
 		let noti = childSnapshot.child("notification").val();
 		if (noti == 1){
@@ -64,6 +70,7 @@ export class MyApp {
 					saldo = saldo + parseFloat(childSnapshot.child("price").val());
 					firebase.database().ref('login/'+this.app_userid+'/saldo').set(saldo);
 					this.app_saldo = saldo;
+					this.app_userobj.saldo = this.app_saldo;
 				});
 				let toast = this.toastCtrl.create({
 				message: 'Tu obra ' + obr + ' ha sido comprada.',
