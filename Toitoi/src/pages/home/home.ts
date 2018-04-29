@@ -84,7 +84,7 @@ export class HomePage {
 
     registro() {
         if(this.image === null) {
-            this.image = "../assets/imgs/userpic.png";
+            this.image = "https://i.imgur.com/bQQ93fW.png";
         }
 		if (this.userR == "" || this.passwordR == ""){
 			let toast = this.toastCtrl.create({

@@ -16,7 +16,7 @@ import { PrincipalPage } from '../principal/principal';
   templateUrl: 'comprar-obra.html',
 })
 export class ComprarObraPage {
-  metodoPago: string = "Paypal";
+    metodoPago: string = "";
     public obra = this.navParams.get('obra');
 	public userobj = this.navParams.get('user');
 	public user = this.userobj.username;
@@ -34,6 +34,15 @@ export class ComprarObraPage {
 	    if(this.obra.username == this.user){
 			let toast = this.toastCtrl.create({
                 message: '¡No puedes comprar tus propias obras!',
+                duration: 3000,
+                position: 'top'
+            });
+            toast.present();
+			return;
+		}
+		if(this.metodoPago == ""){
+			let toast = this.toastCtrl.create({
+                message: 'Por favor, selecciona un método de pago',
                 duration: 3000,
                 position: 'top'
             });

@@ -19,13 +19,13 @@ Visualizador		</ion-title>
 
 <ion-content padding>
   <img src="{{obra.image}}" title='{{obra.title}}'/>
-<div> <div class=p>{{obra.username}} <ion-icon  name="contact" ></ion-icon> </div><div class=t>{{obra.title}} </div></div>
+<div> <div class=p>{{obra.username}} <ion-icon class="icon ion-ios-person"></ion-icon> </div><div class=t>{{obra.title}} </div></div>
  
 <hr/>
 <div id=descripcion> <h4>Descripción </h4>
 <div>{{obra.description}}</div></div>
 
-<button id=boton ion-button color="light" icon-right small (click)="irPagSiguiente()">
+<button id=boton ion-button color="danger" icon-right small (click)="irPagSiguiente()">
 Comprar
 <ion-icon name='arrow-forward'></ion-icon>
 </button>

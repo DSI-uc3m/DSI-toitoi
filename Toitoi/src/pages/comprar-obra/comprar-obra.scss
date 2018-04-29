@@ -2,13 +2,19 @@ page-comprar-obra {
 
 }
 
-#avatarAutor {
-	weight: 30px;
-	height: 30px;
-}
-
 #imagenArte {
 	weight: 250px;
 	height: 250px;
 
+	.icon {
+ display: inline-block;
+ font-size: 40px;
+ color: #ffC977;
+ vertical-align: middle;
+}
+
+.text{
+  display: inline-block;
+  vertical-align: middle;
+}
 }

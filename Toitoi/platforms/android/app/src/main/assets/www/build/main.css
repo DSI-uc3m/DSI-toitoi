@@ -25678,6 +25678,23 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+#imagenArte {
+  weight: 250px;
+  height: 250px;
+}
+
+#imagenArte .icon {
+  display: inline-block;
+  font-size: 40px;
+  color: #ffC977;
+  vertical-align: middle;
+}
+
+#imagenArte .text {
+  display: inline-block;
+  vertical-align: middle;
+}
+
 page-home ion-title {
   position: absolute;
   top: 0;
@@ -25716,6 +25733,7 @@ page-principal ion-card .card-subtitle {
   font-size: 1.0em;
   position: absolute;
   top: 52%;
+  margin-top: 10%;
   width: 100%;
   color: #fff;
 }
@@ -25745,4 +25763,46 @@ page-subir-obra ion-title {
   width: 100%;
   height: 100%;
   text-align: center;
+}
+
+page-ver-obra ion-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 90px 1px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+page-ver-obra .p {
+  float: right;
+  font-size: 14px;
+}
+
+page-ver-obra ion-icon {
+  font-size: 30px;
+}
+
+page-ver-obra .t {
+  font-size: 20px;
+}
+
+page-ver-obra #descripcion {
+  background-color: lightgrey;
+  border-radius: 10px;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 2%;
+  padding: 5%;
+}
+
+page-ver-obra h4 {
+  font-size: 16px;
+}
+
+page-ver-obra #boton {
+  margin-left: 35%;
+  padding: 4%;
+  margin-top: 4%;
 }
