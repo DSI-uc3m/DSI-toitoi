@@ -16,9 +16,11 @@
 
 
 <ion-content padding>
-  <div text-center><img id="userpic" src={{pic}} alt="logo"/> <h4> @{{user}} </h4>
+  <div text-center><img id="userpic" src={{img}} alt="logo" style="max-width: 80%"/> <h4> @{{username}} </h4>
   <h6><ion-icon name="settings"></ion-icon><span>  </span>Editar datos de usuario <br></h6></div>
 <div text-center><button ion-button large (click)="irPagSiguiente()">Publicar una obra</button></div>
+<br>
+<div text-center>Dinero ganado con la app: {{saldo}}€</div>
 <br>
  <ion-list>
      <button ion-item>

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HomePage } from '../home/home';
 import { ComprarObraPage} from '../comprar-obra/comprar-obra';
 
 /**
@@ -16,21 +15,20 @@ import { ComprarObraPage} from '../comprar-obra/comprar-obra';
   templateUrl: 'ver-obra.html',
 })
 export class VerObraPage {
-  obra = this.navParams.get('obra');
-  user = this.navParams.get('username');
+    public userobj = this.navParams.get('user');
+	public obra = this.navParams.get('obra');
+	public user = this.userobj.username;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad VerObraPage');
+    this.userobj = this.navParams.get('user');
+	this.obra = this.navParams.get('obra');
+	this.user = this.userobj.username;
   }
   
     irPagSiguiente(){
-  	this.navCtrl.setRoot(ComprarObraPage, {username: this.user, obra:this.obra});
+  	this.navCtrl.setRoot(ComprarObraPage, {user: this.userobj, obra:this.obra});
   	}
   	
-  irHome(){
-  	this.navCtrl.setRoot(HomePage);
-  	}
-
 }

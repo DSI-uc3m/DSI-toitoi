@@ -11,7 +11,21 @@
   <ion-input type="password" [(ngModel)]="password" id="login" placeholder="Password"></ion-input>
  <button ion-button block (click)="login()"> Login </button>
  <br>
- <button ion-button block (click)="registro()"> Registro </button>
+ 
+ <h4>¿No tienes cuenta?: </h4><button ion-button icon-end (click)="hide()">Regístrate <ion-icon name="ios-arrow-dropdown"></ion-icon> </button>
+ <div *ngIf="hideMe"> 
+ <br>
+ Elige un nombre de usuario y una contraseña: <br>
+   <ion-input [(ngModel)]="userR" id="login" placeholder="Usuario"></ion-input>
+   <ion-input type="password" [(ngModel)]="passwordR" id="login" placeholder="Password"></ion-input>
+ <br>
+ Elige una foto de perfil (opcional): <br>
+	<button ion-button small (click)="getPicture()">Selecciona una imagen</button>
+	<button ion-button small (click)="takePicture()">Saca una foto</button>
+	<br><br>
+	<button ion-button color="secondary" block (click)="registro()">Confirmar registro</button>
+ </div>
+ 
     </div>
 
 </ion-content>

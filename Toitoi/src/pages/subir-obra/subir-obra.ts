@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PublicarObraPage } from '../publicar-obra/publicar-obra';
+import * as firebase from 'firebase';
 /**
  * Generated class for the SubirObraPage page.
  *
@@ -14,19 +15,26 @@ import { PublicarObraPage } from '../publicar-obra/publicar-obra';
   templateUrl: 'subir-obra.html',
 })
 export class SubirObraPage {
-  public user;
-  public pic;
+  public user = this.navParams.get('user');
+  public saldo;
+  public username = this.user.username;
+  public img = this.user.img;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SubirObraPage');
-	this.user = this.navParams.get('username');
-	this.pic = this.navParams.get('userpic');
+	this.user = this.navParams.get('user');
+	this.username = this.user.username;
+	this.img = this.user.img;
+	this.saldo = this.user.saldo;
+	var ref = firebase.database().ref("login/"+this.user.id);
+				ref.on('child_changed', (snapshot, prevChildKey) =>{
+					this.saldo = snapshot.val();
+  });
   }
   
     irPagSiguiente(){
-  	this.navCtrl.setRoot(PublicarObraPage, {username: this.user, userpic: this.pic});
+  	this.navCtrl.setRoot(PublicarObraPage, {user: this.user});
   	}
 
 }

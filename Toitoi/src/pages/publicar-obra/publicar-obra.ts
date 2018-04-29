@@ -22,12 +22,13 @@ import { SubirObraPage } from '../subir-obra/subir-obra';
 })
 export class PublicarObraPage {
     image: string = null;
-    user: string = this.navParams.get('username');
-    temp_pic: string = this.navParams.get('userpic');
+	userobj = this.navParams.get('user');
+    user: string = this.userobj.username;
+    temp_pic: string = this.userobj.img;
     tit: string = null;
     desc: string = null;
     pri: number = null;
-
+	public id = this.userobj.id;
     constructor(public navCtrl: NavController, private toastCtrl: ToastController, public navParams: NavParams, public camera: Camera, public dbFirebase:FirebaseDbProvider) {
     }
 
@@ -98,7 +99,7 @@ export class PublicarObraPage {
             alert("Debes elegir un precio para publicar tu obra");
             return;
         }
-        let obra:Obra = new Obra(this.image,this.user,this.tit,this.desc,this.pri);
+        let obra:Obra = new Obra(this.image,this.user,this.tit,this.desc,this.pri, this.id);
         this.dbFirebase.pushObra(obra);
         let toast = this.toastCtrl.create({
             message: 'Obra publicada correctamente',
@@ -106,7 +107,7 @@ export class PublicarObraPage {
             position: 'bot'
         });
         toast.present();
-        this.navCtrl.setRoot(SubirObraPage, {username: this.user, userpic: this.temp_pic});
+        this.navCtrl.setRoot(SubirObraPage, {user: this.userobj});
     }
 
 }

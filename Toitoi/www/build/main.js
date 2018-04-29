@@ -6,9 +6,8 @@ webpackJsonp([5],{
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VerObraPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__comprar_obra_comprar_obra__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__comprar_obra_comprar_obra__ = __webpack_require__(59);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,7 +17,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
 
 
 
@@ -32,17 +30,17 @@ var VerObraPage = /** @class */ (function () {
     function VerObraPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.userobj = this.navParams.get('user');
         this.obra = this.navParams.get('obra');
-        this.user = this.navParams.get('username');
+        this.user = this.userobj.username;
     }
     VerObraPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad VerObraPage');
+        this.userobj = this.navParams.get('user');
+        this.obra = this.navParams.get('obra');
+        this.user = this.userobj.username;
     };
     VerObraPage.prototype.irPagSiguiente = function () {
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__comprar_obra_comprar_obra__["a" /* ComprarObraPage */], { username: this.user, obra: this.obra });
-    };
-    VerObraPage.prototype.irHome = function () {
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */]);
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__comprar_obra_comprar_obra__["a" /* ComprarObraPage */], { user: this.userobj, obra: this.obra });
     };
     VerObraPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
@@ -63,11 +61,11 @@ var VerObraPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PublicarObraPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(313);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_obra_model__ = __webpack_require__(322);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_obra_model__ = __webpack_require__(334);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_firebase_db_firebase_db__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__subir_obra_subir_obra__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__subir_obra_subir_obra__ = __webpack_require__(61);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -98,11 +96,13 @@ var PublicarObraPage = /** @class */ (function () {
         this.camera = camera;
         this.dbFirebase = dbFirebase;
         this.image = null;
-        this.user = this.navParams.get('username');
-        this.temp_pic = this.navParams.get('userpic');
+        this.userobj = this.navParams.get('user');
+        this.user = this.userobj.username;
+        this.temp_pic = this.userobj.img;
         this.tit = null;
         this.desc = null;
         this.pri = null;
+        this.id = this.userobj.id;
     }
     PublicarObraPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad PublicarObraPage');
@@ -166,7 +166,7 @@ var PublicarObraPage = /** @class */ (function () {
             alert("Debes elegir un precio para publicar tu obra");
             return;
         }
-        var obra = new __WEBPACK_IMPORTED_MODULE_3__models_obra_model__["a" /* Obra */](this.image, this.user, this.tit, this.desc, this.pri);
+        var obra = new __WEBPACK_IMPORTED_MODULE_3__models_obra_model__["a" /* Obra */](this.image, this.user, this.tit, this.desc, this.pri, this.id);
         this.dbFirebase.pushObra(obra);
         var toast = this.toastCtrl.create({
             message: 'Obra publicada correctamente',
@@ -174,7 +174,7 @@ var PublicarObraPage = /** @class */ (function () {
             position: 'bot'
         });
         toast.present();
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5__subir_obra_subir_obra__["a" /* SubirObraPage */], { username: this.user, userpic: this.temp_pic });
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5__subir_obra_subir_obra__["a" /* SubirObraPage */], { user: this.userobj });
     };
     PublicarObraPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
@@ -222,7 +222,7 @@ var map = {
 		3
 	],
 	"../pages/publicar-obra/publicar-obra.module": [
-		356,
+		358,
 		2
 	],
 	"../pages/subir-obra/subir-obra.module": [
@@ -230,7 +230,7 @@ var map = {
 		1
 	],
 	"../pages/ver-obra/ver-obra.module": [
-		358,
+		356,
 		0
 	]
 };
@@ -250,13 +250,194 @@ module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 228:
+/***/ 229:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__principal_principal__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_firebase_db_firebase_db__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_login_model__ = __webpack_require__(353);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_camera__ = __webpack_require__(186);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+var HomePage = /** @class */ (function () {
+    function HomePage(navCtrl, dbFirebase, toastCtrl, events, menu, camera) {
+        this.navCtrl = navCtrl;
+        this.dbFirebase = dbFirebase;
+        this.toastCtrl = toastCtrl;
+        this.events = events;
+        this.menu = menu;
+        this.camera = camera;
+        this.userR = "";
+        this.passwordR = "";
+        this.image = null;
+    }
+    // Registro
+    HomePage.prototype.getPicture = function () {
+        var _this = this;
+        var options = {
+            destinationType: this.camera.DestinationType.DATA_URL,
+            sourceType: 2,
+            allowEdit: true,
+            targetWidth: 500,
+            targetHeight: 500,
+            quality: 100,
+            correctOrientation: true
+        };
+        this.camera.getPicture(options)
+            .then(function (imageData) {
+            _this.image = "data:image/jpeg;base64," + imageData;
+            var toast = _this.toastCtrl.create({
+                message: 'Imagen seleccionada',
+                duration: 3000,
+                position: 'bot'
+            });
+            toast.present();
+        })
+            .catch(function (error) {
+            console.error(error);
+        });
+    };
+    HomePage.prototype.takePicture = function () {
+        var _this = this;
+        var options = {
+            destinationType: this.camera.DestinationType.DATA_URL,
+            sourceType: 1,
+            allowEdit: true,
+            targetWidth: 500,
+            targetHeight: 500,
+            quality: 100,
+            correctOrientation: true
+        };
+        this.camera.getPicture(options)
+            .then(function (imageData) {
+            _this.image = "data:image/jpeg;base64," + imageData;
+            var toast = _this.toastCtrl.create({
+                message: 'Imagen seleccionada',
+                duration: 3000,
+                position: 'bot'
+            });
+            toast.present();
+        })
+            .catch(function (error) {
+            console.error(error);
+        });
+    };
+    HomePage.prototype.registro = function () {
+        if (this.image === null) {
+            this.image = "../assets/imgs/userpic.png";
+        }
+        if (this.userR == "" || this.passwordR == "") {
+            var toast_1 = this.toastCtrl.create({
+                message: 'Tienes que introducir un nombre y una contraseña',
+                duration: 3000,
+                position: 'bot'
+            });
+            toast_1.present();
+            return;
+        }
+        var log = new __WEBPACK_IMPORTED_MODULE_4__models_login_model__["a" /* Login */](this.userR, this.passwordR, this.image);
+        for (var _i = 0, _a = this.logins; _i < _a.length; _i++) {
+            var x = _a[_i];
+            if (log.username == x.username) {
+                var toast_2 = this.toastCtrl.create({
+                    message: 'Ese nombre de usuario no está disponible',
+                    duration: 3000,
+                    position: 'bot'
+                });
+                toast_2.present();
+                return;
+            }
+        }
+        this.dbFirebase.registrar(log);
+        var toast = this.toastCtrl.create({
+            message: 'Usuario creado',
+            duration: 3000,
+            position: 'bot'
+        });
+        toast.present();
+        this.events.publish('test', log);
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__principal_principal__["a" /* PrincipalPage */], { user: log });
+    };
+    HomePage.prototype.login = function () {
+        for (var _i = 0, _a = this.logins; _i < _a.length; _i++) {
+            var x = _a[_i];
+            if (this.user == x.username && this.password == x.password) {
+                var toast_3 = this.toastCtrl.create({
+                    message: '¡Bienvenido, @' + x.username + '!',
+                    duration: 3000,
+                    position: 'bot'
+                });
+                toast_3.present();
+                this.events.publish('test', x);
+                this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__principal_principal__["a" /* PrincipalPage */], { user: x });
+                return;
+            }
+        }
+        var toast = this.toastCtrl.create({
+            message: 'Usuario y/o contraseña incorrecto',
+            duration: 3000,
+            position: 'bot'
+        });
+        toast.present();
+    };
+    HomePage.prototype.hide = function () {
+        if (this.hideMe == true) {
+            this.hideMe = false;
+        }
+        else {
+            this.hideMe = true;
+        }
+    };
+    HomePage.prototype.ionViewDidEnter = function () {
+        var _this = this;
+        this.menu.swipeEnable(false);
+        this.dbFirebase.getClientes().subscribe(function (logins) { _this.logins = logins; });
+    };
+    HomePage.prototype.ionViewWillLeave = function () {
+        this.menu.swipeEnable(true);
+    };
+    HomePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\carlos\Documents\GitHub\DSI-toitoi\Toitoi\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>Toi-toi</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <div text-center>\n\n  <h3>Entra a Toi-toi</h3>\n\n  <ion-input [(ngModel)]="user" id="login" placeholder="Usuario"></ion-input>\n\n  <ion-input type="password" [(ngModel)]="password" id="login" placeholder="Password"></ion-input>\n\n <button ion-button block (click)="login()"> Login </button>\n\n <br>\n\n \n\n <h4>¿No tienes cuenta?: </h4><button ion-button icon-end (click)="hide()">Regístrate <ion-icon name="ios-arrow-dropdown"></ion-icon> </button>\n\n <div *ngIf="hideMe"> \n\n <br>\n\n Elige un nombre de usuario y una contraseña: <br>\n\n   <ion-input [(ngModel)]="userR" id="login" placeholder="Usuario"></ion-input>\n\n   <ion-input type="password" [(ngModel)]="passwordR" id="login" placeholder="Password"></ion-input>\n\n <br>\n\n Elige una foto de perfil (opcional): <br>\n\n	<button ion-button small (click)="getPicture()">Selecciona una imagen</button>\n\n	<button ion-button small (click)="takePicture()">Saca una foto</button>\n\n	<br><br>\n\n	<button ion-button color="secondary" block (click)="registro()">Confirmar registro</button>\n\n </div>\n\n \n\n    </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\carlos\Documents\GitHub\DSI-toitoi\Toitoi\src\pages\home\home.html"*/,
+            providers: [
+                __WEBPACK_IMPORTED_MODULE_5__ionic_native_camera__["a" /* Camera */]
+            ]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_3__providers_firebase_db_firebase_db__["a" /* FirebaseDbProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* Events */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* MenuController */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_camera__["a" /* Camera */]])
+    ], HomePage);
+    return HomePage;
+}());
+
+//# sourceMappingURL=home.js.map
+
+/***/ }),
+
+/***/ 230:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(229);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(231);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(250);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -264,7 +445,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 248:
+/***/ 250:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -272,19 +453,19 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angularfire2_database__ = __webpack_require__(169);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_firebase_db_firebase_db__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(340);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_home__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_subir_obra_subir_obra__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_principal_principal__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(352);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_home__ = __webpack_require__(229);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_subir_obra_subir_obra__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_principal_principal__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_publicar_obra_publicar_obra__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_comprar_obra_comprar_obra__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_comprar_obra_comprar_obra__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_ver_obra_ver_obra__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_status_bar__ = __webpack_require__(226);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_splash_screen__ = __webpack_require__(227);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_status_bar__ = __webpack_require__(227);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_splash_screen__ = __webpack_require__(228);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -334,9 +515,9 @@ var AppModule = /** @class */ (function () {
                     links: [
                         { loadChildren: '../pages/comprar-obra/comprar-obra.module#ComprarObraPageModule', name: 'ComprarObraPage', segment: 'comprar-obra', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/principal/principal.module#PrincipalPageModule', name: 'PrincipalPage', segment: 'principal', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/publicar-obra/publicar-obra.module#PublicarObraPageModule', name: 'PublicarObraPage', segment: 'publicar-obra', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/ver-obra/ver-obra.module#VerObraPageModule', name: 'VerObraPage', segment: 'ver-obra', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/subir-obra/subir-obra.module#SubirObraPageModule', name: 'SubirObraPage', segment: 'subir-obra', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/ver-obra/ver-obra.module#VerObraPageModule', name: 'VerObraPage', segment: 'ver-obra', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/publicar-obra/publicar-obra.module#PublicarObraPageModule', name: 'PublicarObraPage', segment: 'publicar-obra', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_3_angularfire2__["a" /* AngularFireModule */].initializeApp(fireBaseConfig),
@@ -367,32 +548,13 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 312:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Login; });
-var Login = /** @class */ (function () {
-    function Login(us, pass, pic) {
-        this.id = "";
-        this.username = us;
-        this.password = pass;
-        this.img = pic;
-    }
-    return Login;
-}());
-
-//# sourceMappingURL=login.model.js.map
-
-/***/ }),
-
-/***/ 322:
+/***/ 334:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Obra; });
 var Obra = /** @class */ (function () {
-    function Obra(im, us, tit, desc, pri) {
+    function Obra(im, us, tit, desc, pri, authorid) {
         this.id = "";
         this.image = im;
         this.username = us;
@@ -400,6 +562,7 @@ var Obra = /** @class */ (function () {
         this.description = desc;
         this.price = pri;
         this.notification = 0;
+        this.authorID = authorid;
     }
     return Obra;
 }());
@@ -474,20 +637,20 @@ var FirebaseDbProvider = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 340:
+/***/ 352:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(226);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(227);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_subir_obra_subir_obra__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_principal_principal__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(227);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(228);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(229);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_subir_obra_subir_obra__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_principal_principal__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_firebase_db_firebase_db__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_firebase__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_firebase__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -527,9 +690,12 @@ var MyApp = /** @class */ (function () {
             { title: 'Mi perfil', component: __WEBPACK_IMPORTED_MODULE_5__pages_subir_obra_subir_obra__["a" /* SubirObraPage */] },
             { title: 'Cerrar sesión', component: __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */] }
         ];
-        events.subscribe('test', function (user, pic) {
-            _this.app_username = user;
-            _this.app_userpic = pic;
+        events.subscribe('test', function (user) {
+            _this.app_userobj = user;
+            _this.app_username = _this.app_userobj.username;
+            _this.app_userpic = _this.app_userobj.img;
+            _this.app_saldo = _this.app_userobj.saldo;
+            _this.app_userid = _this.app_userobj.id;
         });
     }
     MyApp.prototype.initializeApp = function () {
@@ -539,14 +705,21 @@ var MyApp = /** @class */ (function () {
             // Here you can do any higher level native things you might need.
             _this.statusBar.styleDefault();
             _this.splashScreen.hide();
-            var ref = __WEBPACK_IMPORTED_MODULE_8_firebase__["database"]().ref("obras");
-            ref.on('child_changed', function (childSnapshot, prevChildKey) {
+            var refObras = __WEBPACK_IMPORTED_MODULE_8_firebase__["database"]().ref("obras");
+            refObras.on('child_changed', function (childSnapshot, prevChildKey) {
                 var noti = childSnapshot.child("notification").val();
                 if (noti == 1) {
                     var autor = childSnapshot.child("username").val();
                     var obr = childSnapshot.child("title").val();
                     var id = childSnapshot.child("id").val();
                     if (autor == _this.app_username) {
+                        var authorID = __WEBPACK_IMPORTED_MODULE_8_firebase__["database"]().ref('login/' + _this.app_userid + '/saldo');
+                        authorID.once("value").then(function (snapshot) {
+                            var saldo = snapshot.val();
+                            saldo = saldo + parseFloat(childSnapshot.child("price").val());
+                            __WEBPACK_IMPORTED_MODULE_8_firebase__["database"]().ref('login/' + _this.app_userid + '/saldo').set(saldo);
+                            _this.app_saldo = saldo;
+                        });
                         var toast = _this.toastCtrl.create({
                             message: 'Tu obra ' + obr + ' ha sido comprada.',
                             duration: 3000,
@@ -562,7 +735,7 @@ var MyApp = /** @class */ (function () {
     MyApp.prototype.openPage = function (page) {
         // Reset the content nav to have just this page
         // we wouldn't want the back button to show in this scenario
-        this.nav.setRoot(page.component, { username: this.app_username, userpic: this.app_userpic });
+        this.nav.setRoot(page.component, { user: this.app_userobj });
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */]),
@@ -580,117 +753,34 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 54:
+/***/ 353:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__principal_principal__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_firebase_db_firebase_db__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_login_model__ = __webpack_require__(312);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-var HomePage = /** @class */ (function () {
-    function HomePage(navCtrl, dbFirebase, toastCtrl, events, menu) {
-        this.navCtrl = navCtrl;
-        this.dbFirebase = dbFirebase;
-        this.toastCtrl = toastCtrl;
-        this.events = events;
-        this.menu = menu;
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Login; });
+var Login = /** @class */ (function () {
+    function Login(us, pass, pic) {
+        this.id = "" + Date.now();
+        this.username = us;
+        this.password = pass;
+        this.img = pic;
+        this.saldo = 0;
     }
-    HomePage.prototype.registro = function () {
-        var log = new __WEBPACK_IMPORTED_MODULE_4__models_login_model__["a" /* Login */](this.user, this.password, "../assets/imgs/logo.png");
-        for (var _i = 0, _a = this.logins; _i < _a.length; _i++) {
-            var x = _a[_i];
-            if (log.username == x.username) {
-                var toast_1 = this.toastCtrl.create({
-                    message: 'El usuario seleccionado no está disponible',
-                    duration: 3000,
-                    position: 'bot'
-                });
-                toast_1.present();
-                return;
-            }
-        }
-        this.dbFirebase.registrar(log);
-        var toast = this.toastCtrl.create({
-            message: 'Registro correcto',
-            duration: 3000,
-            position: 'bot'
-        });
-        toast.present();
-        this.events.publish('test', this.user, log.img);
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__principal_principal__["a" /* PrincipalPage */], { username: this.user, userpic: log.img });
-    };
-    HomePage.prototype.login = function () {
-        for (var _i = 0, _a = this.logins; _i < _a.length; _i++) {
-            var x = _a[_i];
-            if (this.user == x.username && this.password == x.password) {
-                var toast_2 = this.toastCtrl.create({
-                    message: 'Inicio de sesión correcta',
-                    duration: 3000,
-                    position: 'bot'
-                });
-                toast_2.present();
-                this.events.publish('listener');
-                this.events.publish('test', this.user, x.img);
-                this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__principal_principal__["a" /* PrincipalPage */], { username: this.user, userpic: x.img });
-                return;
-            }
-        }
-        var toast = this.toastCtrl.create({
-            message: 'Usuario y/o contraseña incorrecto',
-            duration: 3000,
-            position: 'bot'
-        });
-        toast.present();
-    };
-    HomePage.prototype.ionViewDidEnter = function () {
-        var _this = this;
-        this.menu.swipeEnable(false);
-        this.dbFirebase.getClientes().subscribe(function (logins) { _this.logins = logins; });
-    };
-    HomePage.prototype.ionViewWillLeave = function () {
-        this.menu.swipeEnable(true);
-    };
-    HomePage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\carlos\Documents\GitHub\DSI-toitoi\Toitoi\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>Toi-toi</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <div text-center>\n\n  <h3>Entra a Toi-toi</h3>\n\n  <ion-input [(ngModel)]="user" id="login" placeholder="Usuario"></ion-input>\n\n  <ion-input type="password" [(ngModel)]="password" id="login" placeholder="Password"></ion-input>\n\n <button ion-button block (click)="login()"> Login </button>\n\n <br>\n\n <button ion-button block (click)="registro()"> Registro </button>\n\n    </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\carlos\Documents\GitHub\DSI-toitoi\Toitoi\src\pages\home\home.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_3__providers_firebase_db_firebase_db__["a" /* FirebaseDbProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* Events */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* MenuController */]])
-    ], HomePage);
-    return HomePage;
+    return Login;
 }());
 
-//# sourceMappingURL=home.js.map
+//# sourceMappingURL=login.model.js.map
 
 /***/ }),
 
-/***/ 60:
+/***/ 59:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ComprarObraPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_firebase_db_firebase_db__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_firebase_db_firebase_db__ = __webpack_require__(34);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -711,28 +801,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var ComprarObraPage = /** @class */ (function () {
-    function ComprarObraPage(navCtrl, navParams, dbFirebase) {
+    function ComprarObraPage(navCtrl, navParams, dbFirebase, toastCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.dbFirebase = dbFirebase;
+        this.toastCtrl = toastCtrl;
         this.metodoPago = "Paypal";
         this.obra = this.navParams.get('obra');
-        this.user = this.navParams.get('username');
+        this.userobj = this.navParams.get('user');
+        this.user = this.userobj.username;
     }
     ComprarObraPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad ComprarObraPage');
-    };
-    ComprarObraPage.prototype.irHome = function () {
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */]);
+        this.obra = this.navParams.get('obra');
+        this.userobj = this.navParams.get('user');
+        this.user = this.userobj.username;
     };
     ComprarObraPage.prototype.comprarObra = function () {
+        if (this.obra.username == this.user) {
+            var toast = this.toastCtrl.create({
+                message: '¡No puedes comprar tus propias obras!',
+                duration: 3000,
+                position: 'top'
+            });
+            toast.present();
+            return;
+        }
         this.dbFirebase.pushNotificar(this.obra);
     };
     ComprarObraPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-comprar-obra',template:/*ion-inline-start:"C:\Users\carlos\Documents\GitHub\DSI-toitoi\Toitoi\src\pages\comprar-obra\comprar-obra.html"*/'<!--\n\n  Generated template for the ComprarObraPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n	<ion-navbar>\n\n	<button ion-button menuToggle>\n\n		<ion-icon name="menu"></ion-icon>\n\n   	</button>\n\n    <ion-title>Comprar obra</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n<div text-center><h1> Detalles de la compra </h1></div>\n\n<hr/>\n\n\n\n<div id="imagen" text-center>\n\n    <img id="imagenArte" src="{{obra.image}}" title=\'{{obra.title}}\'/>\n\n    <img [src]="image" *ngIf="image" />\n\n  </div>\n\n  \n\n<div text-center><h6>{{obra.title}}</h6> \n\n\n\n\n\n<h3><img id="avatarAutor" src="/assets/imgs/userpic.png" alt="logo"><span> </span>@{{obra.username}}<br></h3>\n\n</div> \n\n<br/>\n\n  \n\n<br/>\n\n  \n\n<ion-list>\n\n  <ion-item>\n\n    <ion-label>Método de pago</ion-label>\n\n    <ion-select [(ngModel)]="metodoPago">\n\n      <ion-option value="paypal">Paypal</ion-option>\n\n      <ion-option value="trans">Transferencia</ion-option>	  \n\n      <ion-option value="tarj">Tarjeta de crédito</ion-option>\n\n      <ion-option value="contr">Contra reembolso</ion-option>\n\n    </ion-select>\n\n  </ion-item>\n\n</ion-list>\n\n\n\n\n\n<button ion-button block (click)="comprarObra()" id="publicar">Pagar</button>\n\n\n\n<br/>\n\n\n\n<div text-center><h1>Precio total: {{obra.price}} € </h1></div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\carlos\Documents\GitHub\DSI-toitoi\Toitoi\src\pages\comprar-obra\comprar-obra.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_firebase_db_firebase_db__["a" /* FirebaseDbProvider */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_firebase_db_firebase_db__["a" /* FirebaseDbProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]])
     ], ComprarObraPage);
     return ComprarObraPage;
 }());
@@ -741,16 +841,18 @@ var ComprarObraPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 61:
+/***/ 60:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PrincipalPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ver_obra_ver_obra__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__comprar_obra_comprar_obra__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__comprar_obra_comprar_obra__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_firebase_db_firebase_db__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -760,6 +862,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -778,19 +881,24 @@ var PrincipalPage = /** @class */ (function () {
         this.dbFirebase = dbFirebase;
     }
     PrincipalPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
         console.log('ionViewDidLoad PrincipalPage');
-        this.user = this.navParams.get('username');
-        this.pic = this.navParams.get('userpic');
+        this.user = this.navParams.get('user');
+        this.dbFirebase.getObras().subscribe(function (obras) { _this.obras = obras.reverse(); });
     };
     PrincipalPage.prototype.verObra = function (obr) {
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__ver_obra_ver_obra__["a" /* VerObraPage */], { username: this.user, obra: obr });
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__ver_obra_ver_obra__["a" /* VerObraPage */], { user: this.user, obra: obr });
     };
     PrincipalPage.prototype.comprarObra = function (obr) {
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__comprar_obra_comprar_obra__["a" /* ComprarObraPage */], { username: this.user, obra: obr });
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__comprar_obra_comprar_obra__["a" /* ComprarObraPage */], { user: this.user, obra: obr });
     };
     PrincipalPage.prototype.ionViewDidEnter = function () {
         var _this = this;
-        this.dbFirebase.getObras().subscribe(function (obras) { _this.obras = obras; });
+        //this.dbFirebase.getObras().subscribe(obras=>{this.obras=obras;});
+        var ref = __WEBPACK_IMPORTED_MODULE_5_firebase__["database"]().ref("obras");
+        ref.on('child_added', function (childSnapshot, prevChildKey) {
+            _this.dbFirebase.getObras().subscribe(function (obras) { _this.obras = obras.reverse(); });
+        });
     };
     PrincipalPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
@@ -805,14 +913,16 @@ var PrincipalPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 62:
+/***/ 61:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SubirObraPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__publicar_obra_publicar_obra__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -822,6 +932,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -835,27 +946,37 @@ var SubirObraPage = /** @class */ (function () {
     function SubirObraPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.user = this.navParams.get('user');
+        this.username = this.user.username;
+        this.img = this.user.img;
     }
     SubirObraPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad SubirObraPage');
-        this.user = this.navParams.get('username');
-        this.pic = this.navParams.get('userpic');
+        var _this = this;
+        this.user = this.navParams.get('user');
+        this.username = this.user.username;
+        this.img = this.user.img;
+        this.saldo = this.user.saldo;
+        var ref = __WEBPACK_IMPORTED_MODULE_3_firebase__["database"]().ref("login/" + this.user.id);
+        ref.on('child_changed', function (snapshot, prevChildKey) {
+            _this.saldo = snapshot.val();
+        });
     };
     SubirObraPage.prototype.irPagSiguiente = function () {
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__publicar_obra_publicar_obra__["a" /* PublicarObraPage */], { username: this.user, userpic: this.pic });
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__publicar_obra_publicar_obra__["a" /* PublicarObraPage */], { user: this.user });
     };
     SubirObraPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-subir-obra',template:/*ion-inline-start:"C:\Users\carlos\Documents\GitHub\DSI-toitoi\Toitoi\src\pages\subir-obra\subir-obra.html"*/'<!--\n\n  Generated template for the SubirObraPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n	<ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Mi perfil</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <div text-center><img id="userpic" src={{pic}} alt="logo"/> <h4> @{{user}} </h4>\n\n  <h6><ion-icon name="settings"></ion-icon><span>  </span>Editar datos de usuario <br></h6></div>\n\n<div text-center><button ion-button large (click)="irPagSiguiente()">Publicar una obra</button></div>\n\n<br>\n\n <ion-list>\n\n     <button ion-item>\n\n      <ion-icon name="brush" item-start></ion-icon>\n\n      Mis obras\n\n    </button>\n\n	\n\n    <button ion-item>\n\n      <ion-icon name="cart" item-start></ion-icon>\n\n      Ventas\n\n    </button>\n\n\n\n    <button ion-item>\n\n      <ion-icon name="mail-open" item-start></ion-icon>\n\n      Pedidos\n\n    </button>\n\n\n\n\n\n  </ion-list>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\carlos\Documents\GitHub\DSI-toitoi\Toitoi\src\pages\subir-obra\subir-obra.html"*/,
+            selector: 'page-subir-obra',template:/*ion-inline-start:"C:\Users\carlos\Documents\GitHub\DSI-toitoi\Toitoi\src\pages\subir-obra\subir-obra.html"*/'<!--\n\n  Generated template for the SubirObraPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n	<ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Mi perfil</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <div text-center><img id="userpic" src={{img}} alt="logo" style="max-width: 80%"/> <h4> @{{username}} </h4>\n\n  <h6><ion-icon name="settings"></ion-icon><span>  </span>Editar datos de usuario <br></h6></div>\n\n<div text-center><button ion-button large (click)="irPagSiguiente()">Publicar una obra</button></div>\n\n<br>\n\n<div text-center>Dinero ganado con la app: {{saldo}}€</div>\n\n<br>\n\n <ion-list>\n\n     <button ion-item>\n\n      <ion-icon name="brush" item-start></ion-icon>\n\n      Mis obras\n\n    </button>\n\n	\n\n    <button ion-item>\n\n      <ion-icon name="cart" item-start></ion-icon>\n\n      Ventas\n\n    </button>\n\n\n\n    <button ion-item>\n\n      <ion-icon name="mail-open" item-start></ion-icon>\n\n      Pedidos\n\n    </button>\n\n\n\n\n\n  </ion-list>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\carlos\Documents\GitHub\DSI-toitoi\Toitoi\src\pages\subir-obra\subir-obra.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object])
     ], SubirObraPage);
     return SubirObraPage;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=subir-obra.js.map
 
 /***/ })
 
-},[228]);
+},[230]);
 //# sourceMappingURL=main.js.map

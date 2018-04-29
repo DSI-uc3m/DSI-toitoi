@@ -4,6 +4,7 @@ import { VerObraPage } from '../ver-obra/ver-obra';
 import { ComprarObraPage } from '../comprar-obra/comprar-obra';
 import {FirebaseDbProvider} from '../../providers/firebase-db/firebase-db';
 import { Obra } from '../../models/obra.model';
+import * as firebase from 'firebase';
 /**
  * Generated class for the PrincipalPage page.
  *
@@ -11,36 +12,42 @@ import { Obra } from '../../models/obra.model';
  * Ionic pages and navigation.
  */
 
+ 
 @IonicPage()
 @Component({
   selector: 'page-principal',
   templateUrl: 'principal.html',
 })
+
+
 export class PrincipalPage {
-  obras:any;
+  public obras:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public dbFirebase:FirebaseDbProvider) {
   }
   
     public user;
-	public pic;
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PrincipalPage');
-	this.user =  this.navParams.get('username');
-	this.pic = this.navParams.get('userpic');
+	this.user =  this.navParams.get('user');
+	this.dbFirebase.getObras().subscribe(obras=>{this.obras=obras.reverse();});
   }
     verObra(obr:Obra)
   {
-  	this.navCtrl.setRoot(VerObraPage, {username: this.user, obra:obr});
+  	this.navCtrl.setRoot(VerObraPage, {user: this.user, obra: obr});
   }
 
       comprarObra(obr:Obra)
   {
-    this.navCtrl.setRoot(ComprarObraPage, {username: this.user, obra:obr});
+    this.navCtrl.setRoot(ComprarObraPage, {user: this.user, obra: obr});
   }
 
   ionViewDidEnter() {
-    this.dbFirebase.getObras().subscribe(obras=>{this.obras=obras;});
+    //this.dbFirebase.getObras().subscribe(obras=>{this.obras=obras;});
+	  var ref = firebase.database().ref("obras");
+	  ref.on('child_added', (childSnapshot, prevChildKey) => {
+		this.dbFirebase.getObras().subscribe(obras=>{this.obras=obras.reverse();});
+	  });
   }
 
 }

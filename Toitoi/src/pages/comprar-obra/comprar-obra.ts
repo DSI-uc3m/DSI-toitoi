@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HomePage } from '../home/home';
 import {FirebaseDbProvider} from '../../providers/firebase-db/firebase-db';
+import { ToastController } from 'ionic-angular';
 /**
  * Generated class for the ComprarObraPage page.
  *
@@ -16,20 +16,29 @@ import {FirebaseDbProvider} from '../../providers/firebase-db/firebase-db';
 })
 export class ComprarObraPage {
   metodoPago: string = "Paypal";
-  obra = this.navParams.get('obra');
-  user = this.navParams.get('username');
+    public obra = this.navParams.get('obra');
+	public userobj = this.navParams.get('user');
+	public user = this.userobj.username;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dbFirebase:FirebaseDbProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dbFirebase:FirebaseDbProvider, private toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ComprarObraPage');
+    this.obra = this.navParams.get('obra');
+	this.userobj = this.navParams.get('user');
+	this.user = this.userobj.username;
   }
   	
-  irHome(){
-  	this.navCtrl.setRoot(HomePage);
-  	}
   comprarObra() {
+	    if(this.obra.username == this.user){
+			let toast = this.toastCtrl.create({
+                message: '¡No puedes comprar tus propias obras!',
+                duration: 3000,
+                position: 'top'
+            });
+            toast.present();
+			return;
+		}
         this.dbFirebase.pushNotificar( this.obra );
   }
 }

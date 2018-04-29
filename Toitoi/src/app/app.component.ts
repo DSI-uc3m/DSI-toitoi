@@ -14,8 +14,11 @@ import * as firebase from 'firebase';
   templateUrl: 'app.html'
 })
 export class MyApp {
+	public app_userobj;
 	public app_username = "aa";
 	public app_userpic;
+	public app_saldo;
+	public app_userid;
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = HomePage;
@@ -31,9 +34,12 @@ export class MyApp {
       { title: 'Cerrar sesión', component: HomePage }
     ];
 
-	events.subscribe('test', (user, pic) => {
-		this.app_username = user;
-		this.app_userpic = pic;
+	events.subscribe('test', (user) => {
+		this.app_userobj = user;
+		this.app_username = this.app_userobj.username;
+		this.app_userpic = this.app_userobj.img;
+		this.app_saldo = this.app_userobj.saldo;
+		this.app_userid = this.app_userobj.id;
 	});
   }
 
@@ -43,14 +49,22 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-	  var ref = firebase.database().ref("obras");
-	  ref.on('child_changed', (childSnapshot, prevChildKey) => {
+	  var refObras = firebase.database().ref("obras");
+	  
+	  refObras.on('child_changed', (childSnapshot, prevChildKey) => {
 		let noti = childSnapshot.child("notification").val();
 		if (noti == 1){
 			let autor = childSnapshot.child("username").val();
 			let obr = childSnapshot.child("title").val();
 			let id = childSnapshot.child("id").val();
 			if (autor == this.app_username){
+				let authorID = firebase.database().ref('login/'+this.app_userid+'/saldo');
+				authorID.once("value").then( (snapshot) =>{
+					let saldo = snapshot.val();
+					saldo = saldo + parseFloat(childSnapshot.child("price").val());
+					firebase.database().ref('login/'+this.app_userid+'/saldo').set(saldo);
+					this.app_saldo = saldo;
+				});
 				let toast = this.toastCtrl.create({
 				message: 'Tu obra ' + obr + ' ha sido comprada.',
 				duration: 3000,
@@ -58,6 +72,7 @@ export class MyApp {
 			});
 			toast.present();
 			firebase.database().ref('obras/'+id+'/notification').set("0");
+
 			}
 		}
 		});
@@ -68,6 +83,6 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component, {username: this.app_username, userpic: this.app_userpic});
+    this.nav.setRoot(page.component, {user: this.app_userobj});
   }
 }
