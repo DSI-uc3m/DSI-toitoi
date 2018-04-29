@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {FirebaseDbProvider} from '../../providers/firebase-db/firebase-db';
 import { ToastController } from 'ionic-angular';
+import { PrincipalPage } from '../principal/principal';
 /**
  * Generated class for the ComprarObraPage page.
  *
@@ -39,6 +40,13 @@ export class ComprarObraPage {
             toast.present();
 			return;
 		}
+        let toast = this.toastCtrl.create({
+            message: '¡Compra realizada con éxito!',
+            duration: 3000,
+            position: 'top'
+        });
+        toast.present();        
         this.dbFirebase.pushNotificar( this.obra );
+        this.navCtrl.setRoot(PrincipalPage, {user: this.userobj});
   }
 }
